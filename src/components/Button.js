@@ -1,10 +1,12 @@
-import React from "react";
-import './Button.scss'
+import React from 'react';
+import './Button.scss';
 
-const Button = ({fullWidth, text}) => {
+const Button = ({ fullWidth, text }) => {
     return (
-        <button style={{width: fullWidth ? '100%' : 'fit-content'}} className="button">{text ? text : 'Click!'}</button>
+        <button style={{ width: fullWidth ? '100%' : 'fit-content' }} className="button">
+            {text ? text : 'Click!'}
+        </button>
     );
 };
 
-export default Button
+export default Button;
