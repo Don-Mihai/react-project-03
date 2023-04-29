@@ -1,16 +1,12 @@
-import React from "react";
-import Button from "./components/Button";
+import React from 'react';
+import Registration from './pages/Registration';
 
 function App() {
-
-
-  return (
-    <div className="text">
-      <Button text={'Кликни меня!'} fullWidth={true}/>
-      <Button text={'Тыкни меня!'}/>
-      <Button />
-    </div>
-  );
+    return (
+        <div className="app">
+            <Registration></Registration>
+        </div>
+    );
 }
 
 export default App;
