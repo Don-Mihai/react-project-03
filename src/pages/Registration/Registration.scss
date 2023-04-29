@@ -1,5 +1,16 @@
 .page-registration {
+    display: flex;
+    flex-direction: column;
     width: 400px;
-    height: 700px;
+    height: 500px;
+    padding: 15px;
+    border-radius: 8px;
     background-color: #fff;
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex-grow: 1;
+    }
 }
