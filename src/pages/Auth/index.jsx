@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import './Registration.scss';
+import './Auth.scss';
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Primary from './Primary';
-import Third from './Third';
-import Secondary from './Secondary';
 
-const Registration = ({}) => {
+const Auth = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
@@ -32,12 +30,11 @@ const Registration = ({}) => {
     };
 
     return (
-        <div className="page-registration">
-            <h2>Фриланс</h2>
-            <div className="page-registration__inputs">
-                <Primary />
-                <Secondary />
-                <Third />
+        <div className="page-auth">
+            <h2>Фриланс Авторизация</h2>
+            <div className="page-auth__inputs">
+                <TextField onChange={handleChangeLogin} value={login} label="Логин" variant="filled" fullWidth />
+                <TextField onChange={handleChangePassword} value={password} label="Пароль" variant="filled" fullWidth />
             </div>
 
             {/* todo: сделать стэппер, для добавления личной информации [2] */}
@@ -45,10 +42,10 @@ const Registration = ({}) => {
                 Сбросить
             </Button>
             <Button onClick={handleSubmit} variant="contained" fullWidth>
-                Регистрация
+                Авторизация
             </Button>
         </div>
     );
 };
 
-export default Registration;
+export default Auth;
