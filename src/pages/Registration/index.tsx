@@ -1,13 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Registration.scss';
 import Button from '@mui/material/Button';
 import Primary from './Primary';
 import Third from './Third';
 import Secondary from './Secondary';
-import axios from 'axios';
+
+export interface FormValues {
+    login: string;
+    password: string;
+    name: string;
+    surname: string;
+    gender: string;
+    user: string;
+    status: string;
+    skill: string;
+}
+
+export interface Props {
+    formValues: FormValues;
+    onChange: (event: any, newValue?: any) => void;
+}
 
 const Registration = ({}) => {
-    const [formValues, setFormValues] = useState({
+    const [formValues, setFormValues] = useState<FormValues>({
         login: '',
         password: '',
         name: '',
@@ -15,16 +30,24 @@ const Registration = ({}) => {
         gender: '',
         user: '',
         status: '',
+        skill: '',
     });
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState<number>(1);
+    const [skills, setSkills] = useState<string[]>([]);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (event: any, newValue: any) => {
         const key = event.target?.name || newValue?.name;
 
         setFormValues({
             ...formValues,
             [key]: newValue?.label || event.target.value,
         });
+    };
+
+    const onEnter = (event: any) => {
+        if (event.code === 'Enter') {
+            setSkills([...skills, formValues.skill]);
+        }
     };
 
     const handleReset = () => {
@@ -60,7 +83,11 @@ const Registration = ({}) => {
     };
 
     const handleSubmit = () => {
-        console.log(formValues);
+        const payload: FormValues = {
+            ...formValues,
+        };
+
+        console.log(payload);
     };
 
     const handleNextStep = () => {
@@ -71,7 +98,7 @@ const Registration = ({}) => {
         <div className="page-registration">
             <h2>Фриланс</h2>
             <div className="page-registration__inputs">
-                {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
+                {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
             </div>

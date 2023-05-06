@@ -5,8 +5,9 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
+import { Props } from '.';
 
-const ProfileType = ({ onChange, formValues }) => {
+const ProfileType = ({ onChange, formValues }: Props) => {
     const status = [
         { label: 'Front-end developer' },
         { label: 'Back-end developer' },
@@ -27,6 +28,7 @@ const ProfileType = ({ onChange, formValues }) => {
             </FormControl>
 
             <Autocomplete
+                // @ts-ignore
                 value={formValues.user === 'Freelancer' ? formValues.status : (formValues.status = '')}
                 onChange={onChange}
                 disablePortal
@@ -34,6 +36,7 @@ const ProfileType = ({ onChange, formValues }) => {
                 options={status}
                 sx={{ minWidth: 200 }}
                 style={{ flex: '1 0 auto' }}
+                // @ts-ignore
                 isOptionEqualToValue={option => option.label}
                 disabled={formValues.user !== 'Freelancer'}
                 renderInput={params => (
