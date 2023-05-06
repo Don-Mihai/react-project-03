@@ -10,6 +10,9 @@ const Registration = ({}) => {
     const [formValues, setFormValues] = useState({
         login: '',
         password: '',
+        name: '',
+        surname: '',
+        gender: '',
         user: '',
         status: '',
     });
@@ -70,7 +73,7 @@ const Registration = ({}) => {
             <div className="page-registration__inputs">
                 {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
-                {step === 3 ? <Third /> : ''}
+                {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
             </div>
 
             {/* todo: сделать стэппер, для добавления личной информации [2] */}
