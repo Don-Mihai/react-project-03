@@ -13,13 +13,17 @@ const Registration = ({}) => {
         name: '',
         surname: '',
         gender: '',
+        user: '',
+        status: '',
     });
     const [step, setStep] = useState(1);
 
-    const handleChange = event => {
+    const handleChange = (event, newValue) => {
+        const key = event.target?.name || newValue?.name;
+
         setFormValues({
             ...formValues,
-            [event.target.name]: event.target.value,
+            [key]: newValue?.label || event.target.value,
         });
     };
 
@@ -38,6 +42,8 @@ const Registration = ({}) => {
                     ...formValues,
                     name: '',
                     surname: '',
+                    user: '',
+                    status: '',
                 });
                 break;
 
