@@ -10,13 +10,17 @@ const Registration = ({}) => {
     const [formValues, setFormValues] = useState({
         login: '',
         password: '',
+        user: '',
+        status: '',
     });
     const [step, setStep] = useState(1);
 
-    const handleChange = event => {
+    const handleChange = (event, newValue) => {
+        const key = event.target?.name || newValue?.name;
+
         setFormValues({
             ...formValues,
-            [event.target.name]: event.target.value,
+            [key]: newValue?.label || event.target.value,
         });
     };
 
@@ -35,6 +39,8 @@ const Registration = ({}) => {
                     ...formValues,
                     name: '',
                     surname: '',
+                    user: '',
+                    status: '',
                 });
                 break;
 
@@ -63,7 +69,7 @@ const Registration = ({}) => {
             <h2>Фриланс</h2>
             <div className="page-registration__inputs">
                 {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
-                {step === 2 ? <Secondary /> : ''}
+                {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 3 ? <Third /> : ''}
             </div>
 
