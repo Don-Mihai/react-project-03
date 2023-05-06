@@ -4,12 +4,15 @@ import Button from '@mui/material/Button';
 import Primary from './Primary';
 import Third from './Third';
 import Secondary from './Secondary';
-import axios from 'axios';
+// import axios from './axios';
 
 const Registration = ({}) => {
     const [formValues, setFormValues] = useState({
         login: '',
         password: '',
+        name: '',
+        surname: '',
+        gender: '',
     });
     const [step, setStep] = useState(1);
 
@@ -63,8 +66,8 @@ const Registration = ({}) => {
             <h2>Фриланс</h2>
             <div className="page-registration__inputs">
                 {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
-                {step === 2 ? <Secondary /> : ''}
-                {step === 3 ? <Third /> : ''}
+                {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
+                {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
             </div>
 
             {/* todo: сделать стэппер, для добавления личной информации [2] */}
