@@ -4,10 +4,11 @@ import bemCreator from '../../components/bemCreator';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import { Button } from '@mui/material';
+import FreelanceSection from '../../components/FreelanceSection';
 
 const cn = bemCreator('page-home');
 
-const Auth = () => {
+const Home = () => {
     return (
         <div className={cn()}>
             <Header />
@@ -18,8 +19,9 @@ const Auth = () => {
                     </Button>
                 </Link>
             </div>
+            <FreelanceSection />
         </div>
     );
 };
 
-export default Auth;
+export default Home;
