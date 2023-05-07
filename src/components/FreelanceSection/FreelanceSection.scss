@@ -1,0 +1,41 @@
+.freelance-section {
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+
+    width: 100%;
+
+    &__title {
+        text-transform: uppercase;
+    }
+    &__title-contaner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__order-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 60px;
+    }
+
+    & &__order {
+        min-width: 435px;
+        padding: 30px;
+        background: #ffffff;
+        border: 1px solid #f8f8f8;
+        box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 40px;
+    }
+
+    &__button {
+        border-radius: 110px;
+    }
+    &__button-contaner {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__line {
+        background: rgba(118, 118, 118, 1);
+    }
+}
