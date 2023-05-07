@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Primary from './Primary';
 import Third from './Third';
 import Secondary from './Secondary';
+import bemCreator from '../../components/bemCreator';
 
 export interface FormValues {
     login: string;
@@ -20,6 +21,8 @@ export interface Props {
     formValues: FormValues;
     onChange: (event: any, newValue?: any) => void;
 }
+
+const cn = bemCreator('page-registration');
 
 const Registration = ({}) => {
     const [formValues, setFormValues] = useState<FormValues>({
@@ -95,9 +98,9 @@ const Registration = ({}) => {
     };
 
     return (
-        <div className="page-registration">
+        <div className={cn()}>
             <h2>Фриланс</h2>
-            <div className="page-registration__inputs">
+            <div className={cn('inputs')}>
                 {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
                 {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
