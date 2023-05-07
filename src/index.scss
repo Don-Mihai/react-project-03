@@ -2,6 +2,9 @@ html {
     height: 100%;
 }
 
+* {
+    box-sizing: border-box;
+}
 body {
     margin: 0;
     height: 100%;
@@ -14,15 +17,11 @@ body {
 
 #root {
     height: 100%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.app {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

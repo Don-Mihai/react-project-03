@@ -5,6 +5,8 @@ import Primary from './Primary';
 import Third from './Third';
 import Secondary from './Secondary';
 import bemCreator from '../../components/bemCreator';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export interface FormValues {
     login: string;
@@ -37,6 +39,8 @@ const Registration = ({}) => {
     });
     const [step, setStep] = useState<number>(1);
     const [skills, setSkills] = useState<string[]>([]);
+
+    const navigate = useNavigate();
 
     const handleChange = (event: any, newValue: any) => {
         const key = event.target?.name || newValue?.name;
@@ -91,6 +95,10 @@ const Registration = ({}) => {
         };
 
         console.log(payload);
+
+        if (formValues.login) {
+            navigate('/main');
+        }
     };
 
     const handleNextStep = () => {
@@ -99,27 +107,33 @@ const Registration = ({}) => {
 
     return (
         <div className={cn()}>
-            <h2>Фриланс</h2>
-            <div className={cn('inputs')}>
-                {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
-                {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
-                {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
+            <div className={cn('top-wrapper')}>
+                Уже зарегистрированы? <Link to={'/auth'}>Войдите</Link>
             </div>
 
-            {/* todo: сделать стэппер, для добавления личной информации [2] */}
-            <Button onClick={handleReset} variant="outlined" fullWidth>
-                Сбросить
-            </Button>
+            <div className={cn('wrapper')}>
+                <h2>Фриланс</h2>
+                <div className={cn('inputs')}>
+                    {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
+                    {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
+                    {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
+                </div>
 
-            {step === 3 ? (
-                <Button onClick={handleSubmit} variant="contained" fullWidth>
-                    Регистрация
+                {/* todo: сделать стэппер, для добавления личной информации [2] */}
+                <Button onClick={handleReset} variant="outlined" fullWidth>
+                    Сбросить
                 </Button>
-            ) : (
-                <Button onClick={handleNextStep} variant="contained" fullWidth>
-                    Далее
-                </Button>
-            )}
+
+                {step === 3 ? (
+                    <Button onClick={handleSubmit} variant="contained" fullWidth>
+                        Регистрация
+                    </Button>
+                ) : (
+                    <Button onClick={handleNextStep} variant="contained" fullWidth>
+                        Далее
+                    </Button>
+                )}
+            </div>
         </div>
     );
 };
