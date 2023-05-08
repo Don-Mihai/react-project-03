@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import bemCreator from '../../components/bemCreator';
+import bemCreator from '../bemCreator';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
