@@ -32,7 +32,7 @@ export function App({}) {
             name: 'Марк Орлов',
             image: './images/freelancers/2.png',
             status: 'UX/UI дизайнер',
-            skills: ['банерры', 'дизайн сайтов', 'моб. дизайн', 'дизайн в соц. сетях'],
+            skills: ['банеры', 'дизайн сайтов', 'моб. дизайн', 'дизайн в соц. сетях'],
             ratePerHour: 800,
             rating: 99,
         },
@@ -47,10 +47,14 @@ export function App({}) {
         },
     ]);
 
+    const toggleUserOpened = () => {
+        setUserOpened(!userOpened);
+    };
+
     return (
         <div className="wrapper">
-            {userOpened && <Drawer onClose={() => setUserOpened(false)} />}
-            <Header onClickUser={() => setUserOpened(true)} />
+            {userOpened && <Drawer onClose={toggleUserOpened} />}
+            <Header onClickUser={toggleUserOpened} />
             <Routes>
                 <Route path="/" element={<Home freelancers={freelancers} sectionTitle="Раздел заказчиков" bottonText="Все фрилансеры" />}></Route>
             </Routes>

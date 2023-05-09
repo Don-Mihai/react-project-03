@@ -14,11 +14,13 @@ $padding-y-mobile: 30px;
         padding: 60px;
         margin-bottom: 30px;
         border-radius: 20px;
+        background-image: url('./img/hero.png');
         background-color: $hero-bgc;
         background-position: right top;
         background-size: cover;
         background-repeat: no-repeat;
         @media (max-width: 767px) {
+            background-image: none;
             text-align: center;
         }
         @media (max-width: 567px) {

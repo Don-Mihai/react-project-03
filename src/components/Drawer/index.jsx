@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const cn = bemCreator('drawer');
 
-function Drawer({ onClose }) {
+const Drawer = ({ onClose }) => {
     return (
         <div className="overlay">
             <div className={cn()}>
@@ -26,6 +26,6 @@ function Drawer({ onClose }) {
             </div>
         </div>
     );
-}
+};
 
 export default Drawer;

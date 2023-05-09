@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 const cn = bemCreator('component-header');
 
-function Header({ onClickUser }) {
+const Header = ({ onClickUser }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     function toggleMenu() {
@@ -45,6 +45,6 @@ function Header({ onClickUser }) {
             </div>
         </header>
     );
-}
+};
 
 export default Header;
