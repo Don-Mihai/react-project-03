@@ -1,6 +1,6 @@
 $padding-y-mobile: 30px;
 
-.homeSection {
+.customersSection {
     position: relative;
     padding: 40px;
     background-color: #fff;
@@ -67,6 +67,7 @@ $padding-y-mobile: 30px;
         border: 1px solid #f3f3f3;
         border-radius: 40px;
         padding: 20px;
+        cursor: pointer;
         transition: box-shadow 0.2 ease-in-out, transform 0.2s ease-in-out;
         @media (max-width: 576px) {
             height: fit-content;

@@ -56,7 +56,7 @@ export function App({}) {
             {userOpened && <Drawer onClose={toggleUserOpened} />}
             <Header onClickUser={toggleUserOpened} />
             <Routes>
-                <Route path="/" element={<Home freelancers={freelancers} sectionTitle="Раздел заказчиков" bottonText="Все фрилансеры" />}></Route>
+                <Route path="/" element={<Home freelancers={freelancers} />}></Route>
             </Routes>
         </div>
     );
