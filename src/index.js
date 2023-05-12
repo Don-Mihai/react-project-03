@@ -6,6 +6,7 @@ import Registration from './pages/Registration';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateOrder from './pages/CreateOrder';
+import HamburgerRegistration from './components/FreelanceSection/HamburgerRegistration/index';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     {
         path: '/create-order',
         element: <CreateOrder />,
+    },
+    {
+        path: '/HamburgerRegistration',
+        element: <HamburgerRegistration />,
     },
 ]);
 
