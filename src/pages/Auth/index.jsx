@@ -40,19 +40,21 @@ const Auth = () => {
             </div>
 
             <div className={cn('wrapper')}>
-                <h2>Фриланс Авторизация</h2>
-                <div className="page-auth__inputs">
-                    <TextField onChange={handleChangeLogin} value={login} label="Логин" variant="filled" fullWidth />
-                    <TextField onChange={handleChangePassword} value={password} label="Пароль" variant="filled" fullWidth />
+                <h2>Авторизация</h2>
+                <div className={cn('page-auth__inputs')}>
+                    <TextField onChange={handleChangeLogin} value={login} label="Логин" variant="outlined" fullWidth />
+                    <TextField onChange={handleChangePassword} value={password} label="Пароль" variant="outlined" fullWidth />
                 </div>
 
                 {/* todo: сделать стэппер, для добавления личной информации [2] */}
-                <Button onClick={handleReset} variant="outlined" fullWidth>
-                    Сбросить
-                </Button>
-                <Button onClick={handleSubmit} variant="contained" fullWidth>
-                    Авторизация
-                </Button>
+                <div className={cn('Button')}>
+                    <Button onClick={handleReset} variant="contained" size="mini">
+                        Войти
+                    </Button>
+                    <Button onClick={handleSubmit} variant="outlined" size="midi">
+                        Нет аккаунта? Зарегистрируйся
+                    </Button>
+                </div>
             </div>
         </div>
     );

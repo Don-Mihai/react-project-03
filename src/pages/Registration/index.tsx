@@ -112,27 +112,29 @@ const Registration = ({}) => {
             </div>
 
             <div className={cn('wrapper')}>
-                <h2>Фриланс</h2>
+                <h2>Регистрация</h2>
                 <div className={cn('inputs')}>
                     {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
                     {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
-                    {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
+                    {/* {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''} */}
                 </div>
 
                 {/* todo: сделать стэппер, для добавления личной информации [2] */}
-                <Button onClick={handleReset} variant="outlined" fullWidth>
-                    Сбросить
-                </Button>
 
-                {step === 3 ? (
+                {/* <Button onClick={handleReset} variant="outlined" fullWidth>
+                Зарегистрироваться
+                </Button> */}
+                {/* {step === 3 ? ( */}
+                <div className={cn('button_two')}>
                     <Button onClick={handleSubmit} variant="contained" fullWidth>
-                        Регистрация
+                        Зарегистрироваться
                     </Button>
-                ) : (
-                    <Button onClick={handleNextStep} variant="contained" fullWidth>
-                        Далее
+                    {/* ) : ( */}
+                    <Button onClick={handleNextStep} variant="outlined" fullWidth>
+                        У меня уже есть аккаунт
                     </Button>
-                )}
+                    {/* )} */}
+                </div>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 .page-auth {
-    // background-color: #fff;
+    display: flex;
+    flex-direction: row;
 
     &__top-wrapper {
         text-align: center;
-        margin-bottom: 20px;
         padding: 15px;
         border-radius: 8px;
         background-color: #fff;
@@ -12,17 +12,30 @@
     &__wrapper {
         display: flex;
         flex-direction: column;
-        width: 400px;
-        height: 500px;
-        padding: 15px;
-        border-radius: 8px;
-        background-color: #fff;
+        width: 578px;
+        height: 600px;
+        padding: 60px;
+        box-sizing: border-box;
+        border: 1px solid #ffffff;
+        box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 40px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
     }
 
-    &__inputs {
+    &__page-auth__inputs {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        flex-grow: 1;
+
+        // border-radius: 130px;
+    }
+
+    &__Button {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
     }
 }
