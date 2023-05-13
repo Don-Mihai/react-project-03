@@ -4,7 +4,6 @@ import bemCreator from '../bemCreator';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
 const cn = bemCreator('component-header');
 
 const Header = ({}) => {
@@ -29,11 +28,11 @@ const Header = ({}) => {
                 </Link>
             </nav>
             <div className={cn('links')}>
-                <Link className={cn('link')} to={'/auth'}>
+                <Link className={cn('link')} to={'/HamburgerRegistration'}>
                     Вход
                 </Link>
 
-                <Link to={'/registration'}>
+                <Link to={'/HamburgerRegistration'}>
                     <Button className={cn('button')} variant="contained">
                         Регистрация
                     </Button>
