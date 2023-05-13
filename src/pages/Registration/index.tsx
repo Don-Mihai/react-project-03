@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Registration.scss';
 import Button from '@mui/material/Button';
 import Primary from './Primary';
@@ -7,6 +7,7 @@ import Secondary from './Secondary';
 import bemCreator from '../../components/bemCreator';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export interface FormValues {
     [INPUTS_NAME.LOGIN]: string;
@@ -63,48 +64,18 @@ const Registration = ({}) => {
         }
     };
 
-    const handleReset = () => {
-        switch (step) {
-            case 1:
-                setFormValues({
-                    ...formValues,
-                    [INPUTS_NAME.LOGIN]: '',
-                    password: '',
-                });
-                break;
-
-            case 2:
-                setFormValues({
-                    ...formValues,
-                    name: '',
-                    surname: '',
-                    user: '',
-                    status: '',
-                });
-                break;
-
-            case 3:
-                setFormValues({
-                    ...formValues,
-                    gender: '',
-                });
-                break;
-
-            default:
-                break;
-        }
-    };
-
     const handleSubmit = () => {
         const payload: FormValues = {
             ...formValues,
         };
 
         console.log(payload);
-
-        if (formValues[INPUTS_NAME.LOGIN]) {
-            navigate('/main');
-        }
+        axios
+            .post('https://645f57d47da4477baf96.mockapi.io/frelancers', payload)
+            .then(() => {
+                navigate('/');
+            })
+            .catch(console.log);
     };
 
     const handleNextStep = () => {
