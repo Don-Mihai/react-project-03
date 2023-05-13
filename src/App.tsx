@@ -4,6 +4,8 @@ import Header from './components/HeaderNew/Header';
 import { Route, Routes } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Home from './pages/HomeNew';
+import Registration from './pages/Registration';
+import Auth from './pages/Auth';
 
 export interface Freelancer {
     id: number;
@@ -54,9 +56,11 @@ export function App({}) {
     return (
         <div className="wrapper">
             {userOpened && <Drawer onClose={toggleUserOpened} />}
-            <Header onClickUser={toggleUserOpened} />
+            {/* <Header onClickUser={toggleUserOpened} /> */}
             <Routes>
                 <Route path="/" element={<Home freelancers={freelancers} />}></Route>
+                <Route path="/registration" element={<Registration />}></Route>
+                <Route path="/auth" element={<Auth />}></Route>
             </Routes>
         </div>
     );

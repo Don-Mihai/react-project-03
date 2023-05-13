@@ -9,6 +9,7 @@ import FreelanceSection from '../../components/FreelanceSection';
 const cn = bemCreator('page-home');
 
 const Home = () => {
+    debugger;
     return (
         <div className={cn()}>
             <Header />

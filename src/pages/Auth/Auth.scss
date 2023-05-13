@@ -25,12 +25,15 @@
         line-height: 39px;
     }
 
-    &__page-auth__inputs {
+    &__inputs {
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        // border-radius: 130px;
+        .MuiOutlinedInput-root {
+            border-radius: 10px;
+        }
     }
 
     &__Button {
