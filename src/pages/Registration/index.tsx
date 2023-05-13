@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 export interface FormValues {
-    login: string;
+    [INPUTS_NAME.LOGIN]: string;
     password: string;
     name: string;
     surname: string;
@@ -17,6 +17,11 @@ export interface FormValues {
     user: string;
     status: string;
     skill: string;
+    passwordRepeat: string;
+}
+
+export enum INPUTS_NAME {
+    LOGIN = 'login',
 }
 
 export interface Props {
@@ -28,8 +33,9 @@ const cn = bemCreator('page-registration');
 
 const Registration = ({}) => {
     const [formValues, setFormValues] = useState<FormValues>({
-        login: '',
+        [INPUTS_NAME.LOGIN]: '',
         password: '',
+        passwordRepeat: '',
         name: '',
         surname: '',
         gender: '',
@@ -62,7 +68,7 @@ const Registration = ({}) => {
             case 1:
                 setFormValues({
                     ...formValues,
-                    login: '',
+                    [INPUTS_NAME.LOGIN]: '',
                     password: '',
                 });
                 break;
@@ -96,7 +102,7 @@ const Registration = ({}) => {
 
         console.log(payload);
 
-        if (formValues.login) {
+        if (formValues[INPUTS_NAME.LOGIN]) {
             navigate('/main');
         }
     };
@@ -115,7 +121,7 @@ const Registration = ({}) => {
                 <h2>Регистрация</h2>
                 <div className={cn('inputs')}>
                     {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
-                    {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
+                    {/* {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''} */}
                     {/* {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''} */}
                 </div>
 
