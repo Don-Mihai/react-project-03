@@ -8,9 +8,9 @@ const cn = bemCreator('component-header');
 const Header = ({ onClickUser }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    function toggleMenu() {
+    const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-    }
+    };
 
     return (
         <header className={cn()}>
