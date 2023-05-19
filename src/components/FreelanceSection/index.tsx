@@ -1,9 +1,8 @@
 import React from 'react';
 import './FreelanceSection.scss';
 import bemCreator from '../bemCreator';
-import { Link } from 'react-router-dom';
+
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
@@ -29,8 +28,10 @@ const FreelanceSection = ({}) => {
     return (
         <section className={cn()}>
             <div className={cn('title-contaner')}>
-                <h2 className={cn('title')}>раздел фрилансеров</h2>
-                <Button variant="outlined">Все фриланс-проекты</Button>
+                <h2 className={cn('title')}>Раздел фрилансеров</h2>
+                <Button className={cn('title-button')} variant="outlined">
+                    Все фриланс-проекты
+                </Button>
             </div>
             <div className={cn('order-container')}>
                 {orders.map(order => {
@@ -39,12 +40,12 @@ const FreelanceSection = ({}) => {
                             <h3 className={cn('order-title')}>{order.name}</h3>
                             <Stack direction="row" spacing={1}>
                                 {order.skills.map((skill, index) => {
-                                    return <Chip key={index} label={skill} />;
+                                    return <Chip className={cn('chip')} key={index} label={skill} />;
                                 })}
                             </Stack>
                             <hr className={cn('line')} />
                             <CardActions className={cn('button-contaner')}>
-                                <div>
+                                <div className={cn('price-text')}>
                                     Стоимость: <br />
                                     {order.price}р.
                                 </div>

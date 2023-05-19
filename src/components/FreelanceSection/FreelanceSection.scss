@@ -1,35 +1,56 @@
 .freelance-section {
     display: flex;
     flex-direction: column;
-    padding: 60px;
+    padding: 40px;
 
     width: 100%;
 
     &__title {
-        text-transform: uppercase;
+    }
+
+    &__title-button {
+        border-radius: 10px;
+        padding: 10px 50px;
+        font-size: 14px;
+        text-transform: none;
+        font-family: 'Inter', system-ui;
     }
     &__title-contaner {
         width: 100%;
         display: flex;
         justify-content: space-between;
+        margin-bottom: 6px;
+        gap: 6px;
     }
     &__order-container {
         display: flex;
         flex-wrap: wrap;
         margin-top: 60px;
+        gap: 14px;
+        align-items: center;
+        justify-content: space-evenly;
     }
 
     & &__order {
         min-width: 435px;
         padding: 30px;
         background: #ffffff;
-        border: 1px solid #f8f8f8;
+        border: 1px solid #f3f3f3;
         box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
         border-radius: 40px;
+        transition: box-shadow 0.2 ease-in-out, transform 0.2s ease-in-out;
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.14);
+        }
+    }
+    &__order-title {
+        margin-bottom: 6px;
     }
 
     &__button {
         border-radius: 110px;
+        font-size: 12px;
     }
     &__button-contaner {
         display: flex;
@@ -37,5 +58,12 @@
     }
     &__line {
         background: rgba(118, 118, 118, 1);
+        margin-top: 6px;
+    }
+    &__price-text {
+        font-size: 12px;
+    }
+    &__chip {
+        font-size: 12px;
     }
 }
