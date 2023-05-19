@@ -16,7 +16,7 @@ const Hero = () => {
                             <span>Лучшие фрилансеры </span>
                             для ваших задач
                         </h1>
-                        <Button component={Link} to="" variant="contained" fullWidth>
+                        <Button component={Link} to="/create-order" variant="contained" fullWidth>
                             Разместить задание
                         </Button>
                     </div>

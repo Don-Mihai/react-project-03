@@ -1,13 +1,15 @@
 $header-height: 80px;
 
 .component-header {
-    position: fixed;
+    // position: absolute;
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 1080px;
     height: $header-height;
     background-color: #fff;
     align-items: center;
+    z-index: 15;
+    border-radius: 20px;
 
     &__links {
         display: flex;
