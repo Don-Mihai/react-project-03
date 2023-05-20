@@ -4,12 +4,15 @@ import Header from './components/HeaderNew/Header';
 import { Route, Routes } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Home from './pages/HomeNew';
-import Registration from './pages/Registration';
+import Registration, { INPUTS_NAME } from './pages/Registration';
 import Auth from './pages/Auth';
 import axios from 'axios';
+import Profile from './pages/Profile';
 
 export interface Freelancer {
     id: number;
+    [INPUTS_NAME.LOGIN]: string;
+    password: string;
     name: string;
     image: string;
     status: string;
@@ -74,6 +77,7 @@ export function App({}) {
                 <Route path="/" element={<Home freelancers={freelancers} />}></Route>
                 <Route path="/registration" element={<Registration />}></Route>
                 <Route path="/auth" element={<Auth />}></Route>
+                <Route path="/profile" element={<Profile />}></Route>
             </Routes>
         </div>
     );

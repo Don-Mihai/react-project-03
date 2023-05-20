@@ -69,7 +69,6 @@ const Registration = ({}) => {
             ...formValues,
         };
 
-        console.log(payload);
         axios
             .post('https://645f57d47da4477baf96.mockapi.io/frelancers', payload)
             .then(() => {
