@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './Registration.scss';
 import TextField from '@mui/material/TextField';
-import { INPUTS_NAME, Props } from '.';
+import { Props } from '.';
 import Chip from '@mui/material/Chip';
+import { INPUTS_NAME } from '../../types';
 
 interface IProps extends Props {
     onEnter: (event: any) => void;

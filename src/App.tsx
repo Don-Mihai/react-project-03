@@ -4,10 +4,11 @@ import Header from './components/HeaderNew/Header';
 import { Route, Routes } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Home from './pages/HomeNew';
-import Registration, { INPUTS_NAME } from './pages/Registration';
+import Registration from './pages/Registration';
 import Auth from './pages/Auth';
 import axios from 'axios';
 import Profile from './pages/Profile';
+import { INPUTS_NAME } from './types';
 
 export interface Freelancer {
     id: number;

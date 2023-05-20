@@ -8,6 +8,7 @@ import bemCreator from '../../components/bemCreator';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { INPUTS_NAME } from '../../types';
 
 export interface FormValues {
     [INPUTS_NAME.LOGIN]: string;
@@ -19,10 +20,6 @@ export interface FormValues {
     status: string;
     skill: string;
     passwordRepeat: string;
-}
-
-export enum INPUTS_NAME {
-    LOGIN = 'login',
 }
 
 export interface Props {
