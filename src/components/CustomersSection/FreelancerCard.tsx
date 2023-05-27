@@ -14,7 +14,7 @@ interface Props {
     freelancer: Freelancer;
 }
 
-function FreelancerCard({ freelancer }: Props) {
+const FreelancerCard = ({ freelancer }: Props) => {
     return (
         <Card className={cn('card')}>
             <div className={cn('row')}>
@@ -40,6 +40,6 @@ function FreelancerCard({ freelancer }: Props) {
             </IconButton>
         </Card>
     );
-}
+};
 
 export default FreelancerCard;

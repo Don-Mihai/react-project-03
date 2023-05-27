@@ -14,7 +14,7 @@ interface Props {
     freelancers: Freelancer[];
 }
 
-function CustomersSection({ sectionTitle, buttonText, freelancers }: Props) {
+const CustomersSection = ({ sectionTitle, buttonText, freelancers }: Props) => {
     return (
         <>
             <section className={cn()}>
@@ -32,6 +32,6 @@ function CustomersSection({ sectionTitle, buttonText, freelancers }: Props) {
             </section>
         </>
     );
-}
+};
 
 export default CustomersSection;
