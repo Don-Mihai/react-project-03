@@ -2,6 +2,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+
 import { Freelancer } from '../../App';
 import bemCreator from '../bemCreator';
 
@@ -11,7 +14,7 @@ interface Props {
     freelancer: Freelancer;
 }
 
-function FreelancerCard({ freelancer }: Props) {
+const FreelancerCard = ({ freelancer }: Props) => {
     return (
         <Card className={cn('card')}>
             <div className={cn('row')}>
@@ -32,8 +35,11 @@ function FreelancerCard({ freelancer }: Props) {
                 </div>
                 <span className={cn('rating')}>Рейтинг: {freelancer.rating}%</span>
             </CardActions>
+            <IconButton className={cn('edit')}>
+                <EditIcon />
+            </IconButton>
         </Card>
     );
-}
+};
 
 export default FreelancerCard;
