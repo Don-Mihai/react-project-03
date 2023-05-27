@@ -6,6 +6,7 @@ import Drawer from './components/Drawer';
 import Home from './pages/HomeNew';
 import Registration from './pages/Registration';
 import Auth from './pages/Auth';
+import CreateOrder from './pages/CreateOrder';
 import axios from 'axios';
 import Profile from './pages/Profile';
 import { INPUTS_NAME } from './types';
@@ -72,12 +73,13 @@ export function App({}) {
 
     return (
         <div className="wrapper">
-            {userOpened && <Drawer onClose={toggleUserOpened} />}
-            {/* <Header onClickUser={toggleUserOpened} /> */}
+            {/* {userOpened && <Drawer onClose={toggleUserOpened} />}
+            <Header onClickUser={toggleUserOpened} /> */}
             <Routes>
-                <Route path="/" element={<Home freelancers={freelancers} />}></Route>
+                <Route path="/create-order" element={<CreateOrder />}></Route>
                 <Route path="/registration" element={<Registration />}></Route>
                 <Route path="/auth" element={<Auth />}></Route>
+                <Route path="/" element={<Home freelancers={freelancers} />}></Route>
                 <Route path="/profile" element={<Profile />}></Route>
             </Routes>
         </div>
