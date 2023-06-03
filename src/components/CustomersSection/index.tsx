@@ -4,28 +4,35 @@ import './CustomersSection.scss';
 import SectionTitle from './SectionTitle';
 import SectionButton from './SectionButton';
 import CustumerCard from './CustumerCard';
-import { Custumer } from '../../redux/customer/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect } from 'react';
+import { fetchCustomer } from '../../redux/customer';
 
 const cn = bemCreator('customersSection');
 
-interface Props {
-    sectionTitle: string;
-    buttonText: string;
-    freelancers: Custumer[];
-}
+interface Props {}
 
-const CustomersSection = ({ sectionTitle, buttonText, freelancers }: Props) => {
+const CustomersSection = ({}: Props) => {
+    const customers = useAppSelector(state => state.customer.customers);
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCustomer());
+    }, []);
+
     return (
         <>
             <section className={cn()}>
+                {/* todo: вынести в отдельный компонент название раздела [Милена] */}
                 <div className={cn('title-contaner')}>
-                    <SectionTitle title={sectionTitle} />
-                    <SectionButton buttonText={buttonText} linkTo="/" />
+                    <SectionTitle title={'Раздел заказчиков'} />
+                    <SectionButton buttonText={'Все фрилансеры'} linkTo="/" />
                 </div>
                 <Grid container spacing={2} className={cn('cards')}>
-                    {freelancers.map(freelancer => (
-                        <Grid key={freelancer.id} item xs={12} sm={6} md={4}>
-                            <CustumerCard freelancer={freelancer} />
+                    {customers.map(custumer => (
+                        <Grid key={custumer.id} item xs={12} sm={6} md={4}>
+                            <CustumerCard custumer={custumer} />
                         </Grid>
                     ))}
                 </Grid>

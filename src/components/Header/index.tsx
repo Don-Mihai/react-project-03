@@ -5,7 +5,11 @@ import React, { useState } from 'react';
 
 const cn = bemCreator('component-header');
 
-const Header = ({ onClickUser }) => {
+interface Props {
+    onClickUser?: () => void;
+}
+
+const Header = ({ onClickUser }: Props) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {

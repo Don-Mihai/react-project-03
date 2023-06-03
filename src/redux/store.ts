@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counter from './counter';
 import customer from './customer';
 
 export const store = configureStore({
     reducer: {
-        counter,
         customer,
     },
 });

@@ -14,12 +14,19 @@ const Primary = ({ onChange, formValues, onEnter, skills }: IProps) => {
     return (
         <>
             <TextField onChange={onChange} value={formValues[INPUTS_NAME.LOGIN]} name={INPUTS_NAME.LOGIN} label="Логин" variant="outlined" fullWidth />
-            <TextField onChange={onChange} value={formValues.surname} name="surname" label="Фамилия" variant="outlined" fullWidth />
-            <TextField onChange={onChange} value={formValues.password} name="password" label="Придумайте пароль" variant="outlined" fullWidth />
+            <TextField onChange={onChange} value={formValues[INPUTS_NAME.SURNAME]} name={INPUTS_NAME.SURNAME} label="Фамилия" variant="outlined" fullWidth />
             <TextField
                 onChange={onChange}
-                value={formValues.passwordRepeat}
-                name="passwordRepeat"
+                value={formValues[INPUTS_NAME.PASSWORD]}
+                name={INPUTS_NAME.PASSWORD}
+                label="Придумайте пароль"
+                variant="outlined"
+                fullWidth
+            />
+            <TextField
+                onChange={onChange}
+                value={formValues[INPUTS_NAME.PASSWORD_REPEAT]}
+                name={INPUTS_NAME.PASSWORD_REPEAT}
                 label="Введите пароль повторно"
                 variant="outlined"
                 fullWidth

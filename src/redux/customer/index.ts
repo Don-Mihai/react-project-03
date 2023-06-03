@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { CustomerState, Custumer, PAuth } from './types';
+import { CustomerState, Custumer, PAuth, PRegister } from './types';
 
 // Дефолтные значения
 const initialState: CustomerState = {
@@ -28,6 +28,11 @@ export const authCustomer = createAsyncThunk<Custumer, PAuth>('freelancer/auth',
     });
 
     return response;
+});
+
+export const registerCustumer = createAsyncThunk('freelancer/register', async (object: PRegister) => {
+    const data = await axios.post('https://645f57d47da4477baf96.mockapi.io/frelancers', object);
+    return data.data;
 });
 
 export const editCustomer = createAsyncThunk('freelancer/edit', async (object: Custumer) => {

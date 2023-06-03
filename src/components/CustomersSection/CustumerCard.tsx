@@ -17,10 +17,10 @@ import { useAppDispatch } from '../../redux/hooks';
 const cn = bemCreator('customersSection');
 
 interface Props {
-    freelancer: Custumer;
+    custumer: Custumer;
 }
 
-const FreelancerCard = ({ freelancer }: Props) => {
+const FreelancerCard = ({ custumer }: Props) => {
     const [actionsMenuEl, setActionsMenuEl] = useState(null);
     const [formValues, setFormValues] = useState({ name: '' });
     const [editMode, setEditMode] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const FreelancerCard = ({ freelancer }: Props) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        setFormValues({ name: freelancer.name });
+        setFormValues({ name: custumer.name });
     }, []);
 
     const openActionsMenuHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
@@ -40,18 +40,18 @@ const FreelancerCard = ({ freelancer }: Props) => {
     };
 
     const handleChange = (event: any) => {
-        const key = event.target?.name;
+        const { value, name } = event.target;
 
         setFormValues({
             ...formValues,
-            [key]: event.target.value,
+            [name]: value,
         });
     };
 
     const onEnter = (event: any) => {
         if (event.code === 'Enter') {
             const payload: Custumer = {
-                ...freelancer,
+                ...custumer,
                 name: formValues.name,
             };
 
@@ -66,33 +66,33 @@ const FreelancerCard = ({ freelancer }: Props) => {
     };
 
     const handleDelete = () => {
-        dispatch(deleteCustomer(freelancer.id));
+        dispatch(deleteCustomer(custumer.id));
     };
 
     return (
         <Card className={cn('card')}>
             <div className={cn('row')}>
-                <img src={freelancer.image} alt="" />
+                <img src={custumer.image} alt="" />
                 <div className={cn('text')}>
                     {editMode ? (
                         <TextField onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="name" fullWidth />
                     ) : (
-                        <h3 className={cn('card-title')}>{freelancer.name}</h3>
+                        <h3 className={cn('card-title')}>{custumer.name}</h3>
                     )}
 
-                    <p className={cn('status')}>{freelancer.status}</p>
+                    <p className={cn('status')}>{custumer.status}</p>
                 </div>
             </div>
             <Stack direction="row" justifyContent="flex-start" flexWrap="wrap" spacing={2} className={cn('skills')}>
-                {freelancer.skills.map((skill, index) => (
+                {custumer?.skills?.map((skill, index) => (
                     <Chip key={index} label={skill} size="small" className={cn('skill')} />
                 ))}
             </Stack>
             <CardActions className={cn('button-contaner')}>
                 <div className={cn('text')}>
-                    <span className={cn('text')}>{freelancer.ratePerHour} ₽ / час</span>
+                    <span className={cn('text')}>{custumer.ratePerHour} ₽ / час</span>
                 </div>
-                <span className={cn('rating')}>Рейтинг: {freelancer.rating}%</span>
+                <span className={cn('rating')}>Рейтинг: {custumer.rating}%</span>
             </CardActions>
             <IconButton className={cn('edit')} aria-label="more" aria-controls="detail-menu" aria-haspopup="true" onClick={openActionsMenuHandler}>
                 <MoreVertIcon color="primary" fontSize="inherit" />
