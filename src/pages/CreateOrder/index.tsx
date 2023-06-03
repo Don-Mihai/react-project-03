@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './CreateOrder.scss';
 import bemCreator from '../../components/bemCreator';
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import { Button, TextField } from '@mui/material';
 
 const cn = bemCreator('page-create-order');

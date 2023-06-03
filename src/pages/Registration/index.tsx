@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { INPUTS_NAME } from '../../types';
+import { useAppDispatch } from '../../redux/hooks';
+import { registerCustumer } from '../../redux/customer';
+import { PRegister } from '../../redux/customer/types';
 
 export interface FormValues {
     [INPUTS_NAME.LOGIN]: string;
@@ -32,6 +35,7 @@ const cn = bemCreator('page-registration');
 const Registration = ({}) => {
     const [formValues, setFormValues] = useState<FormValues>({
         [INPUTS_NAME.LOGIN]: '',
+        // todo: по аналогии со строчкой выше, поменять названия ключей, взяв их из enum [Оксана]
         password: '',
         passwordRepeat: '',
         name: '',
@@ -45,6 +49,8 @@ const Registration = ({}) => {
     const [skills, setSkills] = useState<string[]>([]);
 
     const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
 
     const handleChange = (event: any, newValue: any) => {
         const key = event.target?.name || newValue?.name;
@@ -62,16 +68,15 @@ const Registration = ({}) => {
     };
 
     const handleSubmit = () => {
-        const payload: FormValues = {
-            ...formValues,
+        const payload: PRegister = {
+            login: formValues[INPUTS_NAME.LOGIN],
+            password: formValues.password,
+            name: formValues.name,
         };
 
-        axios
-            .post('https://645f57d47da4477baf96.mockapi.io/frelancers', payload)
-            .then(() => {
-                navigate('/');
-            })
-            .catch(console.log);
+        dispatch(registerCustumer(payload)).then(() => {
+            navigate('/');
+        });
     };
 
     const handleNextStep = () => {
@@ -91,8 +96,6 @@ const Registration = ({}) => {
                     {/* {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''} */}
                     {/* {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''} */}
                 </div>
-
-                {/* todo: сделать стэппер, для добавления личной информации [2] */}
 
                 {/* <Button onClick={handleReset} variant="outlined" fullWidth>
                 Зарегистрироваться

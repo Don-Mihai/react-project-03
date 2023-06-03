@@ -1,9 +1,8 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import './Auth.scss';
 import TextField from '@mui/material/TextField';
 import bemCreator from '../../components/bemCreator';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { validateErrors, validateLogin, validatePassword } from '../../utils';
 import Button from '../../components/Button';
 import { INPUTS_NAME } from '../../types';

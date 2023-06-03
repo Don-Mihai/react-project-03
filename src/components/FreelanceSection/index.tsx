@@ -7,38 +7,32 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { useAppSelector } from '../../redux/hooks';
+import { Order } from '../../redux/order/types';
 
 const cn = bemCreator('freelance-section');
 
-export interface Orders {
-    id: number;
-    name: string;
-    skills: string[];
-    price: number;
-}
-
-export const orders = [
+export const orders: Order[] = [
     { id: 1, name: 'Разработка интернет-магазина', skills: ['React', 'Js', 'CSS'], price: 10000 },
     { id: 2, name: 'Дизайн для мобильного приложения', skills: ['Fimga', 'AdobePhotoShop', 'CSS'], price: 11000 },
     { id: 3, name: 'Обучение нейросети', skills: ['Python', 'DataScience', 'SQL', 'Apache'], price: 12000 },
     { id: 4, name: 'Разработка мобильного приложения', skills: ['ReactNative', 'Typescript', '.Net'], price: 13000 },
 ];
 
-const FreelanceSection = ({ text }: any) => {
-    const value = useAppSelector(state => state.counter.value);
+interface Props {}
+
+const FreelanceSection = ({}: Props) => {
     return (
         <section className={cn()}>
             <div className={cn('title-contaner')}>
-                <h2 className={cn('title')}>Раздел фрилансеров {text}</h2>
+                <h2 className={cn('title')}>Раздел фрилансеров</h2>
                 <Button className={cn('title-button')} variant="outlined">
                     Все фриланс-проекты
                 </Button>
-                {value}
             </div>
             <div className={cn('order-container')}>
                 {orders.map(order => {
                     return (
+                        // todo: вынести в отдельный компонент карточку заказа [Никита]
                         <Card key={order.id} className={cn('order')}>
                             <h3 className={cn('order-title')}>{order.name}</h3>
                             <Stack direction="row" spacing={1}>
