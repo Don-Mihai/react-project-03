@@ -4,17 +4,21 @@ import TextField from '@mui/material/TextField';
 import bemCreator from '../../components/bemCreator';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Freelancer } from '../../App';
 import { validateErrors, validateLogin, validatePassword } from '../../utils';
 import Button from '../../components/Button';
 import { INPUTS_NAME } from '../../types';
 import { INITIAL_STATE } from './utils';
+import { useAppDispatch } from '../../redux/hooks';
+import { authCustomer } from '../../redux/customer';
+import { PAuth } from '../../redux/customer/types';
 
 const cn = bemCreator('page-auth');
 
 const Auth = () => {
     const [formValues, setFormValues] = useState(INITIAL_STATE);
     const [formErrors, setFormErrors] = useState(INITIAL_STATE);
+
+    const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
@@ -42,23 +46,24 @@ const Auth = () => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const isValid = validateErrors(formErrors);
 
         if (!isValid) return;
 
-        axios.get('https://645f57d47da4477ba9554f96.mockapi.io/frelancers').then(res => {
-            const user: Freelancer = res.data.filter((user: Freelancer) => {
-                if (user.login === formValues.login && user.password === formValues.password) {
-                    return true;
-                } else return false;
-            })[0];
+        const payload: PAuth = {
+            login: formValues.login,
+            password: formValues.password,
+        };
 
-            if (user?.id) {
-                localStorage.setItem('userId', String(user.id));
-                navigate('/profile');
-            }
-        });
+        const data = await dispatch(authCustomer(payload));
+
+        // @ts-ignore
+        if (data?.payload?.id) {
+            navigate('/profile');
+        } else {
+            console.log('Неправильный логин или пароль');
+        }
     };
 
     const handleRegister = () => {

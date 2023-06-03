@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { useAppSelector } from '../../redux/hooks';
 
 const cn = bemCreator('freelance-section');
 
@@ -24,14 +25,16 @@ export const orders = [
     { id: 4, name: 'Разработка мобильного приложения', skills: ['ReactNative', 'Typescript', '.Net'], price: 13000 },
 ];
 
-const FreelanceSection = ({}) => {
+const FreelanceSection = ({ text }: any) => {
+    const value = useAppSelector(state => state.counter.value);
     return (
         <section className={cn()}>
             <div className={cn('title-contaner')}>
-                <h2 className={cn('title')}>Раздел фрилансеров</h2>
+                <h2 className={cn('title')}>Раздел фрилансеров {text}</h2>
                 <Button className={cn('title-button')} variant="outlined">
                     Все фриланс-проекты
                 </Button>
+                {value}
             </div>
             <div className={cn('order-container')}>
                 {orders.map(order => {

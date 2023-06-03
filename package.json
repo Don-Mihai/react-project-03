@@ -7,6 +7,7 @@
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.13.0",
+        "@reduxjs/toolkit": "^1.9.5",
         "@types/jest": "^29.5.1",
         "@types/material-ui": "^0.21.12",
         "@types/node": "^18.16.3",
@@ -16,6 +17,7 @@
         "node-sass": "^7.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
         "react-router-dom": "^6.11.1",
         "react-scripts": "5.0.1",
         "typescript": "^5.0.4"
