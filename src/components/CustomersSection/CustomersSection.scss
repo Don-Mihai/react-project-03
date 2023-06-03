@@ -14,10 +14,6 @@ $padding-y-mobile: 30px;
         right: 10px;
     }
 
-    &__title {
-        margin-right: 10px;
-    }
-
     &__skills {
         display: flex;
         flex-direction: row !important;
@@ -30,31 +26,6 @@ $padding-y-mobile: 30px;
         background-color: #e4e4e46a !important;
         font-size: 12px !important;
         margin: 0 !important;
-    }
-
-    &__title-contaner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 60px;
-        @media (max-width: 576px) {
-            flex-direction: column;
-        }
-
-        a {
-            border-radius: 10px;
-            padding: 10px 50px;
-            font-size: 14px;
-            text-transform: none;
-            font-family: 'Inter', system-ui;
-
-            @media (max-width: 576px) {
-                position: absolute;
-                bottom: 20px;
-                margin-top: 20px;
-                padding: 10px 30px;
-            }
-        }
     }
 
     &__button-contaner {

@@ -1,0 +1,13 @@
+.section-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    @media (max-width: 576px) {
+        flex-direction: column;
+    }
+
+    &__title {
+        margin-right: 10px;
+    }
+}

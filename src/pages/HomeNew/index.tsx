@@ -29,7 +29,7 @@ const Home = ({ freelancers }: Props) => {
             <button onClick={handleDecrement}>-</button>
             {value}
             <Hero />
-            <CustomersSection sectionTitle="Раздел заказчиков" buttonText="Все фрилансеры" freelancers={freelancers} />
+            <CustomersSection freelancers={freelancers} />
             <FreelanceSection />
         </>
     );
