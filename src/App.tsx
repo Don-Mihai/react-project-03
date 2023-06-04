@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Auth from './pages/Auth';
 import CreateOrder from './pages/CreateOrder';
 import Profile from './pages/Profile';
 
-export function App({}) {
+export function App() {
     const [userOpened, setUserOpened] = useState(false);
 
     const toggleUserOpened = () => {
