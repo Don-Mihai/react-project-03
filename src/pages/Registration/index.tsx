@@ -15,14 +15,14 @@ import { PRegister } from '../../redux/customer/types';
 
 export interface FormValues {
     [INPUTS_NAME.LOGIN]: string;
-    password: string;
-    name: string;
-    surname: string;
-    gender: string;
-    user: string;
-    status: string;
-    skill: string;
-    passwordRepeat: string;
+    [INPUTS_NAME.PASSWORD]: string;
+    [INPUTS_NAME.NAME]: string;
+    [INPUTS_NAME.SURNAME]: string;
+    [INPUTS_NAME.GENDER]: string;
+    [INPUTS_NAME.USER]: string;
+    [INPUTS_NAME.STATUS]: string;
+    [INPUTS_NAME.SKILL]: string;
+    [INPUTS_NAME.PASSWORD_REPEAT]: string;
 }
 
 export interface Props {
@@ -36,14 +36,14 @@ const Registration = ({}) => {
     const [formValues, setFormValues] = useState<FormValues>({
         [INPUTS_NAME.LOGIN]: '',
         // todo: по аналогии со строчкой выше, поменять названия ключей, взяв их из enum [Оксана]
-        password: '',
-        passwordRepeat: '',
-        name: '',
-        surname: '',
-        gender: '',
-        user: '',
-        status: '',
-        skill: '',
+        [INPUTS_NAME.PASSWORD]: '',
+        [INPUTS_NAME.PASSWORD_REPEAT]: '',
+        [INPUTS_NAME.NAME]: '',
+        [INPUTS_NAME.SURNAME]: '',
+        [INPUTS_NAME.GENDER]: '',
+        [INPUTS_NAME.USER]: '',
+        [INPUTS_NAME.STATUS]: '',
+        [INPUTS_NAME.SKILL]: '',
     });
     const [step, setStep] = useState<number>(1);
     const [skills, setSkills] = useState<string[]>([]);
