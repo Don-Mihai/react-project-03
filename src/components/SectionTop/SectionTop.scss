@@ -10,4 +10,8 @@
     &__title {
         margin-right: 10px;
     }
+
+    & &__link {
+        padding: 10px 50px;
+    }
 }

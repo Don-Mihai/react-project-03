@@ -1,13 +1,9 @@
 .page-registration {
     display: flex;
-    flex-direction: row;
-
-    &__top-wrapper {
-        text-align: center;
-        padding: 15px;
-        border-radius: 8px;
-        background-color: #fff;
-    }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 
     &__wrapper {
         display: flex;
@@ -23,6 +19,7 @@
         font-weight: 700;
         font-size: 32px;
         line-height: 39px;
+        background-color: #fff;
     }
 
     &__inputs {

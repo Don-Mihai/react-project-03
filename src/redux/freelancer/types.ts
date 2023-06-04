@@ -6,8 +6,9 @@ export interface FreelancerDto {
     password: string;
     name: string;
     image?: string;
-    status?: string;
     skills?: string[];
+    // профессия
+    status?: string;
     ratePerHour?: number;
     rating?: number;
 }

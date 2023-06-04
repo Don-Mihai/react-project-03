@@ -15,7 +15,7 @@ const SectionTop = ({ sectionTitle, buttonText, buttonLinkTo = '/' }: SectionTop
     return (
         <div className={cn()}>
             <h2 className={cn('title')}>{sectionTitle}</h2>
-            <LinkButton buttonText={buttonText} linkTo={buttonLinkTo} />
+            <LinkButton className={cn('link')} buttonText={buttonText} linkTo={buttonLinkTo} />
         </div>
     );
 };

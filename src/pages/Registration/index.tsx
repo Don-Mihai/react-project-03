@@ -12,6 +12,7 @@ import { INPUTS_NAME } from '../../types';
 import { useAppDispatch } from '../../redux/hooks';
 import { registerCustumer } from '../../redux/customer';
 import { PRegister } from '../../redux/customer/types';
+import LinkButton from '../../components/LinkButton';
 
 export interface FormValues {
     [INPUTS_NAME.LOGIN]: string;
@@ -85,10 +86,6 @@ const Registration = ({}) => {
 
     return (
         <div className={cn()}>
-            <div className={cn('top-wrapper')}>
-                Уже зарегистрированы? <Link to={'/auth'}>Войдите</Link>
-            </div>
-
             <div className={cn('wrapper')}>
                 <h2>Регистрация</h2>
                 <div className={cn('inputs')}>
@@ -106,9 +103,7 @@ const Registration = ({}) => {
                         Зарегистрироваться
                     </Button>
                     {/* ) : ( */}
-                    <Button onClick={handleNextStep} variant="outlined" fullWidth>
-                        У меня уже есть аккаунт
-                    </Button>
+                    <LinkButton buttonText="У меня уже есть аккаунт" linkTo="/auth" />
                     {/* )} */}
                 </div>
             </div>

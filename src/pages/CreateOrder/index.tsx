@@ -29,7 +29,6 @@ const CreateOrder = () => {
 
     return (
         <div className={cn()}>
-            <Header />
             <div className={cn('wrap')}>
                 <TextField onChange={handleChange} name="name" value={formValues.name} label={'Название проекта'} fullWidth></TextField>
                 <Button variant="contained" onClick={handleSubmit}>
