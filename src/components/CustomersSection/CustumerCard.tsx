@@ -18,9 +18,11 @@ const cn = bemCreator('customersSection');
 
 interface Props {
     custumer: Custumer;
+    className?: string;
+    showDescription?: boolean;
 }
 
-const FreelancerCard = ({ custumer }: Props) => {
+const FreelancerCard = ({ custumer, className, showDescription }: Props) => {
     const [actionsMenuEl, setActionsMenuEl] = useState(null);
     const [formValues, setFormValues] = useState({ name: '' });
     const [editMode, setEditMode] = useState<boolean>(false);
@@ -70,7 +72,7 @@ const FreelancerCard = ({ custumer }: Props) => {
     };
 
     return (
-        <Card className={cn('card')}>
+        <Card className={`${cn('card')} ${className}`}>
             <div className={cn('row')}>
                 <img src={custumer.image} alt="" />
                 <div className={cn('text')}>
@@ -83,6 +85,12 @@ const FreelancerCard = ({ custumer }: Props) => {
                     <p className={cn('status')}>{custumer.status}</p>
                 </div>
             </div>
+            {showDescription && (
+                <div>
+                    <p className={cn('description')}>{custumer.description?.substring(0, 290) + '...'}</p>
+                </div>
+            )}
+
             <Stack direction="row" justifyContent="flex-start" flexWrap="wrap" spacing={2} className={cn('skills')}>
                 {custumer?.skills?.map((skill, index) => (
                     <Chip key={index} label={skill} size="small" className={cn('skill')} />

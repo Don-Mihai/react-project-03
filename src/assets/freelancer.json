@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Лара Фабиан",
+        "image": "./images/freelancers/1.png",
+        "status": "Full-Stack разработчик",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 1500,
+        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 90,
+        "password": "user1",
+        "login": "user1"
+    },
+    {
+        "id": 2,
+        "name": "Марк Орлов",
+        "image": "./images/freelancers/2.png",
+        "status": "UX/UI дизайнер",
+        "skills": ["банеры", "дизайн сайтов", "моб. дизайн", "дизайн в соц. сетях"],
+        "ratePerHour": 800,
+        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 99,
+        "password": "user2",
+        "login": "user2"
+    },
+    {
+        "id": 3,
+        "name": "Тимур Леонов",
+        "image": "./images/freelancers/3.png",
+        "status": "Full-Stack разработчик",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2"
+    }
+]

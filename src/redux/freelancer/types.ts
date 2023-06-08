@@ -11,6 +11,7 @@ export interface FreelancerDto {
     status?: string;
     ratePerHour?: number;
     rating?: number;
+    description?: string;
 }
 
 export interface Freelancer extends FreelancerDto {}
