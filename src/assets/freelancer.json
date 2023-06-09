@@ -6,10 +6,11 @@
         "status": "Full-Stack разработчик",
         "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
         "ratePerHour": 1500,
-        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "description": "джаваскрипт věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
         "rating": 90,
         "password": "user1",
-        "login": "user1"
+        "login": "user1",
+        "category": "development"
     },
     {
         "id": 2,
@@ -18,21 +19,114 @@
         "status": "UX/UI дизайнер",
         "skills": ["банеры", "дизайн сайтов", "моб. дизайн", "дизайн в соц. сетях"],
         "ratePerHour": 800,
-        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "description": "моушеновое  věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
         "rating": 99,
         "password": "user2",
-        "login": "user2"
+        "login": "user2",
+        "category": "design"
     },
     {
         "id": 3,
-        "name": "Тимур Леонов",
+        "name": "Тимур Ф",
         "image": "./images/freelancers/3.png",
         "status": "Full-Stack разработчик",
         "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
         "ratePerHour": 2000,
-        "description": "Je obecně známou věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "description": "фулстековое věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
         "rating": 100,
         "password": "user3",
-        "login": "user2"
+        "login": "user2",
+        "category": "development"
+    },
+    {
+        "id": 4,
+        "name": "Тимур Б",
+        "image": "./images/freelancers/3.png",
+        "status": "Back-end разработчик",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "бекендовое věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "development"
+    },
+    {
+        "id": 5,
+        "name": "Тимур Тест",
+        "image": "./images/freelancers/3.png",
+        "status": "Тестировщик",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "тестированое věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "testing"
+    },
+    {
+        "id": 6,
+        "name": "Тимур Ря",
+        "image": "./images/freelancers/3.png",
+        "status": "SEO специалист",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "сеошное věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "marketing"
+    },
+    {
+        "id": 7,
+        "name": "Анна Ря",
+        "image": "./images/freelancers/3.png",
+        "status": "SMM специалист",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "рекламное věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "marketing"
+    },
+    {
+        "id": 8,
+        "name": "М Леонов",
+        "image": "./images/freelancers/3.png",
+        "status": "Front-end разработчик",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин", "ложки"],
+        "ratePerHour": 2000,
+        "description": "тайпскрипт věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "development"
+    },
+    {
+        "id": 9,
+        "name": "Иван Иванов",
+        "image": "./images/freelancers/3.png",
+        "status": "Копирайтер",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "тайпскрипт věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "content"
+    },
+    {
+        "id": 10,
+        "name": "Фёдор Достоевский",
+        "image": "./images/freelancers/3.png",
+        "status": "Системный администратор",
+        "skills": ["верстка", "сайт \"под ключ\"", "wordpress", "интернет-магазин"],
+        "ratePerHour": 2000,
+        "description": "тайпскрипт věcí, že člověk bývá při zkoumání grafického návrhu rozptylován okolním textem, pokud mu dává nějaký smysl. Úkolem Lorem Ipsum je pak nahradit klasický smysluplný text vhodnou bezvýznamovou alternativou s relativně běžným rozložením slov. To jej dělá narozdíl od opakujícího se Tady bude text. Tady bude text...",
+        "rating": 100,
+        "password": "user3",
+        "login": "user2",
+        "category": "administration"
     }
 ]
