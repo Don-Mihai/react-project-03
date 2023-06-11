@@ -8,11 +8,17 @@ import { Button, TextField } from '@mui/material';
 const cn = bemCreator('page-create-order');
 
 interface FormValues {
-    name: string;
+    projectName: string;
+    projectDescription: string;
+    price: string;
 }
 
 const CreateOrder = () => {
-    const [formValues, setFormValues] = useState<FormValues>({ name: '' });
+    const [formValues, setFormValues] = useState<FormValues>({
+        projectName: '',
+        projectDescription: '',
+        price: '',
+    });
 
     const handleChange = (event: any) => {
         const key = event.target?.name;
@@ -28,10 +34,27 @@ const CreateOrder = () => {
     };
 
     return (
-        <div className={cn()}>
-            <div className={cn('wrap')}>
-                <TextField onChange={handleChange} name="name" value={formValues.name} label={'Название проекта'} fullWidth></TextField>
-                <Button variant="contained" onClick={handleSubmit}>
+        <div className={cn('wrap')}>
+            <div className="h1">
+                <h1>Раздел заказчиков</h1>
+            </div>
+            <div className="h3">
+                <h3>Создать фриланс проект</h3>
+            </div>
+
+            <div className="nameproject">
+                {' '}
+                <TextField onChange={handleChange} name="projectName" value={formValues.projectName} label={'Название проекта'} fullWidth />
+            </div>
+            <div className="projectoverview">
+                <TextField onChange={handleChange} name="projectDescription" value={formValues.projectDescription} label={'Описание проекта'} fullWidth />
+            </div>
+            <div className="price">
+                <TextField onChange={handleChange} name="price" value={formValues.price} label={'Прайс услуги'} fullWidth />
+            </div>
+
+            <div className="butto">
+                <Button variant="contained" onClick={handleSubmit} className={cn('publish-button')}>
                     Опубликовать проект
                 </Button>
             </div>
