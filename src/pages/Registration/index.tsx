@@ -10,20 +10,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { INPUTS_NAME } from '../../types';
 import { useAppDispatch } from '../../redux/hooks';
-import { registerCustumer } from '../../redux/customer';
-import { PRegister } from '../../redux/customer/types';
+import { registerUser } from '../../redux/user';
+import { PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
 
-export interface FormValues {
-    [INPUTS_NAME.LOGIN]: string;
-    [INPUTS_NAME.PASSWORD]: string;
-    [INPUTS_NAME.NAME]: string;
-    [INPUTS_NAME.SURNAME]: string;
-    [INPUTS_NAME.GENDER]: string;
-    [INPUTS_NAME.USER]: string;
-    [INPUTS_NAME.STATUS]: string;
-    [INPUTS_NAME.SKILL]: string;
+export interface FormValues extends Partial<PRegister> {
     [INPUTS_NAME.PASSWORD_REPEAT]: string;
+    [INPUTS_NAME.STATUS]?: string;
 }
 
 export interface Props {
@@ -33,21 +26,17 @@ export interface Props {
 
 const cn = bemCreator('page-registration');
 
+const initialValues: FormValues = {
+    [INPUTS_NAME.LOGIN]: '',
+    [INPUTS_NAME.PASSWORD]: '',
+    [INPUTS_NAME.PASSWORD_REPEAT]: '',
+    [INPUTS_NAME.NAME]: '',
+    [INPUTS_NAME.SURNAME]: '',
+};
+
 const Registration = ({}) => {
-    const [formValues, setFormValues] = useState<FormValues>({
-        [INPUTS_NAME.LOGIN]: '',
-        // todo: по аналогии со строчкой выше, поменять названия ключей, взяв их из enum [Оксана]
-        [INPUTS_NAME.PASSWORD]: '',
-        [INPUTS_NAME.PASSWORD_REPEAT]: '',
-        [INPUTS_NAME.NAME]: '',
-        [INPUTS_NAME.SURNAME]: '',
-        [INPUTS_NAME.GENDER]: '',
-        [INPUTS_NAME.USER]: '',
-        [INPUTS_NAME.STATUS]: '',
-        [INPUTS_NAME.SKILL]: '',
-    });
+    const [formValues, setFormValues] = useState<FormValues>(initialValues);
     const [step, setStep] = useState<number>(1);
-    const [skills, setSkills] = useState<string[]>([]);
 
     const navigate = useNavigate();
 
@@ -62,21 +51,17 @@ const Registration = ({}) => {
         });
     };
 
-    const onEnter = (event: any) => {
-        if (event.code === 'Enter') {
-            setSkills([...skills, formValues.skill]);
-        }
-    };
-
     const handleSubmit = () => {
         const payload: PRegister = {
             login: formValues[INPUTS_NAME.LOGIN],
-            password: formValues.password,
-            name: formValues.name,
-        };
+            password: formValues[INPUTS_NAME.PASSWORD],
+            name: formValues[INPUTS_NAME.NAME],
+            surname: formValues[INPUTS_NAME.SURNAME],
+            role: formValues[INPUTS_NAME.ROLE],
+        } as PRegister;
 
-        dispatch(registerCustumer(payload)).then(() => {
-            navigate('/');
+        dispatch(registerUser(payload)).then(() => {
+            navigate('/home');
         });
     };
 
@@ -89,22 +74,23 @@ const Registration = ({}) => {
             <div className={cn('wrapper')}>
                 <h2>Регистрация</h2>
                 <div className={cn('inputs')}>
-                    {step === 1 ? <Primary onEnter={onEnter} skills={skills} onChange={handleChange} formValues={formValues} /> : ''}
-                    {/* {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''} */}
-                    {/* {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''} */}
+                    {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
+                    {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
+                    {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
                 </div>
 
-                {/* <Button onClick={handleReset} variant="outlined" fullWidth>
-                Зарегистрироваться
-                </Button> */}
-                {/* {step === 3 ? ( */}
                 <div className={cn('button_two')}>
-                    <Button onClick={handleSubmit} variant="contained" fullWidth>
-                        Зарегистрироваться
-                    </Button>
-                    {/* ) : ( */}
+                    {step === 3 ? (
+                        <Button onClick={handleSubmit} variant="contained" fullWidth>
+                            Зарегистрироваться
+                        </Button>
+                    ) : (
+                        <Button onClick={handleNextStep} variant="contained">
+                            Далее
+                        </Button>
+                    )}
+
                     <LinkButton buttonText="У меня уже есть аккаунт" linkTo="/auth" />
-                    {/* )} */}
                 </div>
             </div>
         </div>

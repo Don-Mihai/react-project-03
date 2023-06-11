@@ -8,8 +8,8 @@ import Button from '../../components/Button';
 import { INPUTS_NAME } from '../../types';
 import { INITIAL_STATE } from './utils';
 import { useAppDispatch } from '../../redux/hooks';
-import { authCustomer } from '../../redux/customer';
-import { PAuth } from '../../redux/customer/types';
+import { authUsers } from '../../redux/user';
+import { PAuth } from '../../redux/user/types';
 
 const cn = bemCreator('page-auth');
 
@@ -55,7 +55,7 @@ const Auth = () => {
             password: formValues.password,
         };
 
-        const data = await dispatch(authCustomer(payload));
+        const data = await dispatch(authUsers(payload));
 
         // @ts-ignore
         if (data?.payload?.id) {

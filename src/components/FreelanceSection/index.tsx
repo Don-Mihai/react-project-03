@@ -7,11 +7,10 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { Order } from '../../redux/order/types';
 
 const cn = bemCreator('freelance-section');
 
-export const orders: Order[] = [
+export const orders = [
     { id: 1, name: 'Разработка интернет-магазина', skills: ['React', 'Js', 'CSS'], price: 10000 },
     { id: 2, name: 'Дизайн для мобильного приложения', skills: ['Fimga', 'AdobePhotoShop', 'CSS'], price: 11000 },
     { id: 3, name: 'Обучение нейросети', skills: ['Python', 'DataScience', 'SQL', 'Apache'], price: 12000 },

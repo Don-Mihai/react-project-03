@@ -26,6 +26,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "server": "json-server -w db.json --port 5000",
         "prepare": "husky install",
         "prettier": "prettier --write --config ./prettier.config.js"
     },

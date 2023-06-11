@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import customer from './customer';
+import proposal from './proposal';
+import user from './user';
+import userProfile from './userProfile';
+import project from './project';
 
 export const store = configureStore({
     reducer: {
-        customer,
+        proposal,
+        user,
+        userProfile,
+        project,
     },
 });
 
