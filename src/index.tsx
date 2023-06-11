@@ -10,6 +10,7 @@ import Registration from './pages/Registration';
 import Auth from './pages/Auth';
 import Home from './pages/Home';
 import CreateOrder from './pages/CreateOrder';
+import CardIdPage from './pages/CardIdPage';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: 'home',
                 element: <Home />,
+            },
+            {
+                path: '/cards/:id',
+                element: <CardIdPage />,
             },
             {
                 path: 'create-order',
