@@ -49,7 +49,7 @@ const FindFreelancers = () => {
     //что-то не так)
 
     React.useEffect(() => {
-        dispatch(fetch);
+        dispatch(fetch());
     }, []);
 
     // const freelancers: Freelancer[] = freelancersJSON;

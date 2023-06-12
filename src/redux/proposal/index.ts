@@ -25,6 +25,12 @@ export const fetch = createAsyncThunk('proposal/fetch', async () => {
     return procData;
 });
 
+export const fetchById = createAsyncThunk('proposal/fetchById', async (proposalId: number) => {
+    const data = await axios.get(BASE_URL + '/proposals' + '/' + proposalId);
+
+    return data.data;
+});
+
 export const create = createAsyncThunk('proposal/register', async (object: PProposal) => {
     const data = await axios.post(BASE_URL + '/proposals', object);
     return data.data;
