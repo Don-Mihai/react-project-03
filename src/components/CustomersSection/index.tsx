@@ -21,9 +21,9 @@ const CustomersSection = () => {
     return (
         <>
             <section className={cn()}>
-                <SectionTop sectionTitle="Раздел заказчиков" buttonText="Все фрилансеры" buttonLinkTo="/" />
+                <SectionTop className={cn('top')} sectionTitle="Раздел заказчиков" buttonText="Все фрилансеры" buttonLinkTo="/find-freelancers" />
                 <Grid container spacing={2} className={cn('cards')}>
-                    {proposals.map(proposal => (
+                    {proposals.slice(0, 3).map(proposal => (
                         <Grid key={proposal.id} item xs={12} sm={6} md={4}>
                             <CustumerCard proposal={proposal} />
                         </Grid>

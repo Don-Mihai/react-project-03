@@ -10,6 +10,7 @@ import Registration from './pages/Registration';
 import Auth from './pages/Auth';
 import Home from './pages/Home';
 import CreateOrder from './pages/CreateOrder';
+import FindFreelancers from './pages/FindFreelancers';
 
 const router = createBrowserRouter([
     {
@@ -21,12 +22,16 @@ const router = createBrowserRouter([
                 element: <Profile />,
             },
             {
-                path: 'home',
+                path: '/',
                 element: <Home />,
             },
             {
                 path: 'create-order',
                 element: <CreateOrder />,
+            },
+            {
+                path: 'find-freelancers',
+                element: <FindFreelancers />,
             },
             // {
             //     path: 'freelacers',

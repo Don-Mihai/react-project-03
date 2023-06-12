@@ -1,7 +1,4 @@
-$header-height: 128px;
-$header-text-color: #000;
-$header-bgc: #fff;
-$header-bottom-color: #eaeaea;
+@import '../../scss/_variables';
 
 .component-header {
     display: flex;
@@ -9,15 +6,18 @@ $header-bottom-color: #eaeaea;
     align-items: center;
     flex-wrap: wrap;
     position: relative;
-    padding: 40px;
+    padding: $padding-x-desktop;
     border-bottom: 1px solid $header-bottom-color;
+    @media (max-width: 767px) {
+        padding: 40px $padding-x-mobile;
+    }
 
     a {
-        color: $header-text-color;
+        color: $color-primary;
         text-decoration: none;
 
         &:hover {
-            color: lighten($color: $header-text-color, $amount: 30);
+            color: lighten($color: $color-primary, $amount: 30);
         }
     }
 
@@ -78,7 +78,7 @@ $header-bottom-color: #eaeaea;
             left: 0;
             width: 100%;
             overflow: hidden;
-            background-color: #fff;
+            background-color: $bc-primary;
             z-index: 5;
             transition: all 0.5s ease-in-out;
 
@@ -112,7 +112,7 @@ $header-bottom-color: #eaeaea;
             top: 6px;
             width: 100%;
             height: 1px;
-            background-color: $header-text-color;
+            background-color: $color-primary;
             transition: all 0.3s ease-in;
         }
         &::before,
@@ -122,7 +122,7 @@ $header-bottom-color: #eaeaea;
             width: 100%;
             height: 1px;
             left: 0;
-            background-color: $header-text-color;
+            background-color: $color-primary;
             transition: all 0.3s ease-in;
         }
         &::before {
