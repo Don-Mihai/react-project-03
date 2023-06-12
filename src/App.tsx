@@ -26,8 +26,7 @@ export function App() {
 
     return (
         <div className="wrapper">
-            {userOpened && <Drawer onClose={toggleUserOpened} />}
-
+            {userOpened && <Drawer onClose={toggleUserOpened} setUserOpened={setUserOpened} />}
             <Header onClickUser={toggleUserOpened} />
             <Outlet />
         </div>
