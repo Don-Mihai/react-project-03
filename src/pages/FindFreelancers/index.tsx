@@ -8,6 +8,10 @@ import CustumerCard from '../../components/CustomersSection/CustumerCard';
 import freelancersJSON from '../../assets/freelancer.json';
 
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetch } from '../../redux/proposal';
+import { Proposal } from '../../redux/proposal/types';
+import { CATEGORY_TYPE } from '../../redux/userProfile/types';
 
 const cn = bemCreator('find-freelancers');
 
@@ -35,10 +39,23 @@ interface CheckboxValues {
 }
 
 const FindFreelancers = () => {
-    const freelancers: Freelancer[] = freelancersJSON;
-    const [filteredFreelancers, setFilteredFreelancers] = useState<Freelancer[]>([]);
+    //притянем из хранилища
+    const { proposals } = useAppSelector(store => store.proposal);
+    //диспатч
+    const dispatch = useAppDispatch();
+    //получаем из хранища данные
+
+    // надо вспомнить :D
+    //что-то не так)
+
+    React.useEffect(() => {
+        dispatch(fetch);
+    }, []);
+
+    // const freelancers: Freelancer[] = freelancersJSON;
+    const [filteredFreelancers, setFilteredFreelancers] = useState<Proposal[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [searchResult, setSearchResult] = useState<Freelancer[]>([]);
+    const [searchResult, setSearchResult] = useState<Proposal[]>([]);
     const [checkboxValues, setCheckboxValues] = useState<CheckboxValues>({
         development: false,
         testing: false,
@@ -53,13 +70,13 @@ const FindFreelancers = () => {
     };
 
     useEffect(() => {
-        const filterFreelancers = (freelancers: Freelancer[]) => {
-            const filteredBySearch = freelancers.filter(person => {
+        const filterFreelancers = (proposals: Proposal[]) => {
+            const filteredBySearch = proposals.filter(person => {
                 return (
-                    person.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    person.user?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     person.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     person.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    person.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()))
+                    person.userProfile?.skills?.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()))
                 );
             });
 
@@ -72,12 +89,13 @@ const FindFreelancers = () => {
                 checkboxValues.marketing
             ) {
                 const filteredByCheckbox = filteredBySearch.filter(person => {
-                    if (checkboxValues.development && person.category === 'development') return true;
-                    if (checkboxValues.testing && person.category === 'testing') return true;
-                    if (checkboxValues.administration && person.category === 'administration') return true;
-                    if (checkboxValues.design && person.category === 'design') return true;
-                    if (checkboxValues.content && person.category === 'content') return true;
-                    if (checkboxValues.marketing && person.category === 'marketing') return true;
+                    const category = person.userProfile?.category;
+                    if (checkboxValues.development && category === CATEGORY_TYPE.DEVELOPMENT) return true;
+                    if (checkboxValues.testing && category === CATEGORY_TYPE.TESTING) return true;
+                    if (checkboxValues.administration && category === CATEGORY_TYPE.ADMINISTRATION) return true;
+                    if (checkboxValues.design && category === CATEGORY_TYPE.DESIGN) return true;
+                    if (checkboxValues.content && category === CATEGORY_TYPE.CONTENT) return true;
+                    if (checkboxValues.marketing && category === CATEGORY_TYPE.MARKETING) return true;
                     return false;
                 });
 
@@ -86,9 +104,9 @@ const FindFreelancers = () => {
 
             return filteredBySearch;
         };
-        const filtered = filterFreelancers(freelancers);
+        const filtered = filterFreelancers(proposals);
         setSearchResult(filtered);
-    }, [freelancers, searchQuery, checkboxValues, filteredFreelancers]);
+    }, [proposals, searchQuery, checkboxValues, filteredFreelancers]);
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCheckboxValues({ ...checkboxValues, [event.target.name]: event.target.checked });
@@ -99,8 +117,8 @@ const FindFreelancers = () => {
             <SectionTop className={cn('top')} sectionTitle="Раздел заказчиков" sectionSubtitle="Найти фрилансера" />
             <div className={cn('wrap')}>
                 <div className={cn('cards')}>
-                    {searchResult.map(customer => (
-                        <CustumerCard className={cn('card')} key={customer.id} custumer={customer} showDescription={true} />
+                    {searchResult.map(proposal => (
+                        <CustumerCard className={cn('card')} key={proposal.id} proposal={proposal} showDescription={true} />
                     ))}
                 </div>
 
