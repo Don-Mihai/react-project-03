@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 
 import bemCreator from '../bemCreator';
 import { Proposal } from '../../redux/proposal/types';
+import { useNavigate } from 'react-router-dom';
 
 const cn = bemCreator('customersSection');
 
@@ -15,8 +16,9 @@ interface Props {
 }
 
 const FreelancerCard = ({ proposal, className, showDescription }: Props) => {
+    const navigate = useNavigate();
     return (
-        <Card className={`${cn('card')} ${className}`}>
+        <Card className={`${cn('card')} ${className}`} onClick={() => navigate(`/cards/${proposal.id}`)}>
             <div className={cn('row')}>
                 <img src={proposal.userProfile?.imageUrl} alt="" />
                 <div className={cn('text')}>
