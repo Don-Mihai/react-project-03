@@ -4,7 +4,7 @@ import { Link, LinkProps } from 'react-router-dom';
 import './LinkButton.scss';
 
 interface Props extends ButtonProps {
-    buttonText: string;
+    buttonText?: string;
     linkTo?: string;
     className?: string;
     component?: LinkProps;
@@ -12,8 +12,18 @@ interface Props extends ButtonProps {
 }
 
 const LinkButton = ({ variant, buttonText, className, linkTo = '/', ...props }: Props) => {
+    const handleScrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
     return (
-        <Button className={`link-button ${className}`} component={Link} to={linkTo} variant={variant ? variant : 'outlined'} {...props}>
+        <Button
+            onClick={handleScrollToTop}
+            className={`link-button ${className}`}
+            component={Link}
+            to={linkTo}
+            variant={variant ? variant : 'outlined'}
+            {...props}
+        >
             {buttonText}
         </Button>
     );

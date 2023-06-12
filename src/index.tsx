@@ -11,6 +11,7 @@ import Auth from './pages/Auth';
 import Home from './pages/Home';
 import CreateOrder from './pages/CreateOrder';
 import CardIdPage from './pages/CardIdPage';
+import FindFreelancers from './pages/FindFreelancers';
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
                 element: <Profile />,
             },
             {
-                path: 'home',
+                path: '/',
                 element: <Home />,
             },
             {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-order',
                 element: <CreateOrder />,
+            },
+            {
+                path: 'find-freelancers',
+                element: <FindFreelancers />,
             },
             // {
             //     path: 'freelacers',

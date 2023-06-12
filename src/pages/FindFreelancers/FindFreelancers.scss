@@ -1,0 +1,51 @@
+@import '../../scss/_variables';
+
+.find-freelancers {
+    position: relative;
+    padding: $padding-x-desktop;
+    background-color: $bc-primary;
+    @media screen and (max-width: 767px) {
+        padding: $padding-x-mobile;
+    }
+
+    &__top {
+        margin-top: 30px;
+        @media screen and (max-width: 767px) {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__wrap {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    &__cards {
+        flex: 1 1 450px;
+        padding: 20px 5px;
+        min-height: 100px;
+    }
+
+    &__card {
+        height: fit-content;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        .customersSection__edit {
+            display: none;
+        }
+    }
+
+    &__filter {
+        background-color: #bbddff;
+        padding: 20px 40px;
+        flex: 1 1 200px;
+        min-height: 100px;
+
+        // todo: по готовности уточнить max-width
+        @media screen and (max-width: 709px) {
+            order: -1;
+        }
+    }
+}

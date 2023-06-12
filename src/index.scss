@@ -16,6 +16,12 @@ body {
     background-color: $body-bgc;
     height: 100%;
 }
+h1 {
+    font-size: 36px;
+    @media (max-width: 576px) {
+        font-size: 30px;
+    }
+}
 
 .wrapper {
     background: #ffffff;

@@ -1,13 +1,8 @@
+@import '../../scss/_variables';
+
 a.link-button {
     border-radius: 10px;
     font-size: 14px;
     text-transform: none;
     font-family: 'Inter', system-ui;
-
-    @media (max-width: 576px) {
-        position: absolute;
-        bottom: 20px;
-        margin-top: 20px;
-        padding: 10px 30px;
-    }
 }

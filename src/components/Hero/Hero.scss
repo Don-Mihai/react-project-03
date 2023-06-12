@@ -1,13 +1,11 @@
-$hero-bgc: #e0ecf8;
-$hero-blue-text: #1976d2;
-$padding-y-mobile: 30px;
+@import '../../scss/_variables';
 
 .page-hero {
     position: relative;
-    padding: 40px;
-    @media (max-width: 567px) {
-        padding-right: $padding-y-mobile;
-        padding-left: $padding-y-mobile;
+    padding: $padding-x-desktop;
+    @media (max-width: 767px) {
+        padding-right: $padding-x-mobile;
+        padding-left: $padding-x-mobile;
     }
 
     &__container {
@@ -15,7 +13,7 @@ $padding-y-mobile: 30px;
         margin-bottom: 30px;
         border-radius: 20px;
         background-image: url('./img/hero.png');
-        background-color: $hero-bgc;
+        background-color: $bc-secondary;
         background-position: right top;
         background-size: cover;
         background-repeat: no-repeat;
@@ -24,8 +22,8 @@ $padding-y-mobile: 30px;
             text-align: center;
         }
         @media (max-width: 567px) {
-            padding-right: $padding-y-mobile;
-            padding-left: $padding-y-mobile;
+            padding-right: $padding-x-mobile;
+            padding-left: $padding-x-mobile;
         }
     }
     &__text-container {
@@ -68,14 +66,14 @@ $padding-y-mobile: 30px;
         padding: 40px 60px;
         gap: 10px;
         border-radius: 20px;
-        background-color: $hero-bgc;
+        background-color: $bc-secondary;
 
         @media (max-width: 767px) {
             flex-direction: column;
         }
         @media (max-width: 567px) {
-            padding-right: $padding-y-mobile;
-            padding-left: $padding-y-mobile;
+            padding-right: $padding-x-mobile;
+            padding-left: $padding-x-mobile;
         }
 
         &-logo {

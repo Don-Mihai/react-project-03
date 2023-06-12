@@ -1,14 +1,25 @@
+@import '../../scss/_variables';
+
 .section-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 60px;
-    @media (max-width: 576px) {
-        flex-direction: column;
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 576px) {
+            flex-direction: column;
+        }
     }
 
-    &__title {
-        margin-right: 10px;
+    &__subtitle {
+        margin-top: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        color: $color-secondary;
+        @media (max-width: 576px) {
+            text-align: center;
+        }
     }
 
     & &__link {
