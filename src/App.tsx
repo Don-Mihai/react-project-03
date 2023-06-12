@@ -17,7 +17,7 @@ export function App() {
     const navigate = useNavigate();
 
     const toggleUserOpened = () => {
-        if (currentUser) {
+        if (currentUser?.id) {
             navigate('/profile');
         } else {
             setUserOpened(!userOpened);
