@@ -42,3 +42,5 @@ export const validatePassword = (password: string): string => {
 
     return errorMessage;
 };
+
+export const BASE_URL = 'http://localhost:5000';

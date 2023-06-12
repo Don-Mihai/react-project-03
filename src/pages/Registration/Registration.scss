@@ -23,10 +23,14 @@
     }
 
     &__inputs {
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        flex-grow: 1;
+
+        .MuiOutlinedInput-root {
+            border-radius: 10px;
+        }
     }
 
     &__button_two {

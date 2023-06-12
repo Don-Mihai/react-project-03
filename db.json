@@ -1,0 +1,56 @@
+{
+    "users": [
+        {
+            "name": "admin",
+            "login": "admin",
+            "password": "admin",
+            "role": "admin",
+            "id": 1
+        },
+        {
+            "login": "qq",
+            "password": "qq",
+            "name": "qq",
+            "surname": "qq",
+            "role": "freelancer",
+            "id": 2
+        },
+        {
+            "login": "ww",
+            "password": "ww",
+            "name": "ww",
+            "surname": "ww",
+            "role": "freelancer",
+            "id": 3
+        }
+    ],
+    "users-profile": [],
+    "projects": [],
+    "proposals": [
+        {
+            "userId": "1",
+            "title": "Мои услуги",
+            "description": "Описание услуги",
+            "price": 500,
+            "status": "фулстэк",
+            "id": 1
+        },
+        {
+            "userId": "1",
+            "title": "Мои услуги",
+            "description": "Описание услуги",
+            "price": 500,
+            "status": "фулстэк",
+            "id": 1000
+        },
+        {
+            "userId": "1",
+            "title": "Мои услуги",
+            "description": "Описание услуги",
+            "price": 500,
+            "status": "фулстэк",
+            "id": 1001
+        }
+    ],
+    "orders": []
+}
