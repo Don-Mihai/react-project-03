@@ -28,11 +28,11 @@ export const fetch = createAsyncThunk('proposal/fetch', async () => {
 export const fetchById = createAsyncThunk('proposal/fetchById', async (proposalId: number) => {
     const proposal = (await axios.get(BASE_URL + '/proposals' + '/' + proposalId)).data;
 
-    const user: UserDto = (await axios.get(BASE_URL + '/users' + '/' + proposal.data.userId)).data;
+    const user: UserDto = (await axios.get(BASE_URL + '/users' + '/' + proposal.userId)).data;
 
-    const userProfile: UserProfileDto[] = (await axios.get(BASE_URL + '/users' + '/' + proposal.data.userProfiles.userId)).data;
+    const userProfile: UserProfileDto[] = (await axios.get(`${BASE_URL}/users-profile?userId=${user.id}`)).data;
 
-    const data = [...proposal, ...user, ...userProfile];
+    const data = { ...user, ...userProfile, ...proposal };
 
     return data;
 });

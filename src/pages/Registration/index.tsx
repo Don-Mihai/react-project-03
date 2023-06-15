@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Registration.scss';
 import Button from '@mui/material/Button';
-import Primary from './Primary';
+import Primary, { IPrimaryRef } from './Primary';
 import Third from './Third';
 import Secondary from './Secondary';
 import bemCreator from '../../components/bemCreator';
@@ -38,6 +38,8 @@ const Registration = ({}) => {
     const [formValues, setFormValues] = useState<FormValues>(initialValues);
     const [step, setStep] = useState<number>(1);
 
+    const ref = useRef<IPrimaryRef | null>(null);
+
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
@@ -67,6 +69,7 @@ const Registration = ({}) => {
 
     const handleNextStep = () => {
         setStep(step + 1);
+        ref?.current?.validation();
     };
 
     return (
@@ -74,7 +77,7 @@ const Registration = ({}) => {
             <div className={cn('wrapper')}>
                 <h2>Регистрация</h2>
                 <div className={cn('inputs')}>
-                    {step === 1 ? <Primary onChange={handleChange} formValues={formValues} /> : ''}
+                    {step === 1 ? <Primary ref={ref} onChange={handleChange} formValues={formValues} /> : ''}
                     {step === 2 ? <Secondary onChange={handleChange} formValues={formValues} /> : ''}
                     {step === 3 ? <Third onChange={handleChange} formValues={formValues} /> : ''}
                 </div>

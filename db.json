@@ -22,6 +22,22 @@
             "surname": "ww",
             "role": "freelancer",
             "id": 3
+        },
+        {
+            "login": "ww",
+            "password": "ww",
+            "name": "ww",
+            "surname": "ww",
+            "role": "customer",
+            "id": 4
+        },
+        {
+            "login": "degion",
+            "password": "degion",
+            "name": "Ди",
+            "surname": "Жеон",
+            "role": "freelancer",
+            "id": 5
         }
     ],
     "users-profile": [],

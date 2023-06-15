@@ -1,12 +1,27 @@
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import './Registration.scss';
 import TextField from '@mui/material/TextField';
 import { Props } from '.';
 import { INPUTS_NAME } from '../../types';
 
-interface IProps extends Props {}
+interface IProps extends Props {
+    ref: any;
+}
 
-const Primary = ({ onChange, formValues }: IProps) => {
+export interface IPrimaryRef {
+    validation: () => boolean;
+}
+
+const Primary = forwardRef<IPrimaryRef, IProps>(({ onChange, formValues }, ref) => {
+    const validation = () => {
+        console.log('происходит валидация');
+        return true;
+    };
+
+    useImperativeHandle(ref, () => ({
+        validation,
+    }));
+
     return (
         <>
             <TextField
@@ -27,6 +42,6 @@ const Primary = ({ onChange, formValues }: IProps) => {
             ))} */}
         </>
     );
-};
+});
 
 export default Primary;
