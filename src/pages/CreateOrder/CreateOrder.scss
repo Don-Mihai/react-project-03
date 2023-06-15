@@ -2,8 +2,32 @@
     &__wrap {
         padding-top: 180px;
         margin: 0 auto;
-        width: 1200px;
-        height: 500px;
+        width: 900px;
+        height: 550px;
         background-color: #fff;
     }
+}
+.butto {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.nameproject {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.h1 {
+    position: absolute;
+    top: 200px;
+}
+.h3 {
+    position: absolute;
+    top: 240px;
+    color: rgb(77, 147, 239);
+}
+.price {
+    display: flex;
+    margin-top: 30px;
+    width: 200px;
 }
