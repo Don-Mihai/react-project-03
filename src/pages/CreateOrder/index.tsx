@@ -1,37 +1,61 @@
 import { useState } from 'react';
 import './CreateOrder.scss';
 import bemCreator from '../../components/bemCreator';
-import { Link } from 'react-router-dom';
-import Header from '../../components/Header';
 import { Button, TextField } from '@mui/material';
+import { selectCurrentUser } from '../../redux/user';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { PProject, PROJECT_STATUS } from '../../redux/project/types';
+import { create } from '../../redux/project';
+import FreelancerCard from '../../components/CustomersSection/CustumerCard';
 
 const cn = bemCreator('page-create-order');
 
-interface FormValues {
-    name: string;
-}
+//наследуем интерфейс заказа
+interface FormValues extends PProject {}
 
 const CreateOrder = () => {
-    const [formValues, setFormValues] = useState<FormValues>({ name: '' });
+    const dispatch = useAppDispatch();
+
+    //получим id текущего пользователя
+    const { id } = useAppSelector(selectCurrentUser);
+    //присвоем его employerId
+    const initialState = {
+        employerId: id,
+        title: '',
+        description: '',
+        status: PROJECT_STATUS.ACTIVE,
+    };
+    const [project, setProject] = useState<FormValues>(initialState as FormValues);
 
     const handleChange = (event: any) => {
         const key = event.target?.name;
 
-        setFormValues({
-            ...formValues,
+        setProject({
+            ...project,
             [key]: event.target.value,
         });
     };
 
-    const handleSubmit = () => {
-        console.log(formValues);
+    const createProject = () => {
+        try {
+            dispatch(create(project));
+            setProject(initialState as FormValues);
+        } catch (error) {
+            console.error('Ошибка при создании проекта');
+        }
     };
+
+    //Изменить верстку, когда пользователь не авторизовался
+    if (!id) {
+        return <>Сначала войдите в аккаунт, в качестве заказчика</>;
+    }
 
     return (
         <div className={cn()}>
             <div className={cn('wrap')}>
-                <TextField onChange={handleChange} name="name" value={formValues.name} label={'Название проекта'} fullWidth></TextField>
-                <Button variant="contained" onClick={handleSubmit}>
+                <TextField onChange={handleChange} name="title" value={project.title} label={'Название проекта'} fullWidth></TextField>
+                <TextField onChange={handleChange} name="description" value={project.description} label={'Описание проекта'} fullWidth></TextField>
+                <Button variant="contained" onClick={createProject}>
                     Опубликовать проект
                 </Button>
             </div>

@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { PProject, Project, ProjectState } from './types';
+import { PProject, PROJECT_STATUS, Project, ProjectDto, ProjectState } from './types';
 import { BASE_URL } from '../../utils';
+import { UserDto } from '../user/types';
+import { UserProfileDto } from '../userProfile/types';
+import { RootState } from '../store';
 
 // Дефолтные значения
 const initialState: ProjectState = {
@@ -9,11 +12,26 @@ const initialState: ProjectState = {
 };
 
 export const fetch = createAsyncThunk('project/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/projects');
-    return data.data;
+    const data: ProjectDto[] = (await axios.get(BASE_URL + '/projects')).data;
+    const users: UserDto[] = (await axios.get(BASE_URL + '/users')).data;
+    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/users-profile')).data;
+
+    const projectData: Project[] = data.map(project => {
+        const user = users.find(user => user.id === project.employerId);
+        const userProfile = userProfiles.find(userProfile => userProfile.userId === user?.id);
+
+        let canTakeProject = true;
+        if (project.status === PROJECT_STATUS.ARCHIVED) {
+            canTakeProject = false;
+        }
+
+        return { user, userProfile, canTakeProject, ...project };
+    });
+
+    return projectData;
 });
 
-export const create = createAsyncThunk('project/register', async (object: PProject) => {
+export const create = createAsyncThunk('project/create', async (object: PProject) => {
     const data = await axios.post(BASE_URL + '/projects', object);
     return data.data;
 });
@@ -31,13 +49,15 @@ export const remove = createAsyncThunk('project/delete', async (userId: number) 
 export const projectSlice = createSlice({
     name: 'project',
     initialState,
-    reducers: {
-        // функции обработчики (микротаски)
-    },
+    reducers: {},
     extraReducers(builder) {
         builder
             .addCase(fetch.fulfilled, (state, action) => {
                 state.projects = action.payload;
+            })
+            .addCase(fetch.rejected, (state, action) => {
+                state.projects = [];
+                console.error('Ошибка при получении всех проектов');
             })
             .addCase(edit.fulfilled, (state, action) => {
                 state.projects = state.projects.map(user => {
@@ -50,6 +70,9 @@ export const projectSlice = createSlice({
             })
             .addCase(remove.fulfilled, (state, action) => {
                 state.projects = state.projects.filter(user => user.id !== action.payload.id);
+            })
+            .addCase(create.fulfilled, (state, action) => {
+                state.projects.push(action.payload);
             });
     },
 });
@@ -57,3 +80,5 @@ export const projectSlice = createSlice({
 export const {} = projectSlice.actions;
 
 export default projectSlice.reducer;
+
+export const selectProject = (state: RootState) => state.project.projects;

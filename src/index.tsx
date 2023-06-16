@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import CreateOrder from './pages/CreateOrder';
 import CardIdPage from './pages/CardIdPage';
 import FindFreelancers from './pages/FindFreelancers';
+import AllProjects from './pages/AllProjects';
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: 'find-freelancers',
                 element: <FindFreelancers />,
+            },
+            {
+                path: 'all-projects',
+                element: <AllProjects />,
             },
             // {
             //     path: 'freelacers',

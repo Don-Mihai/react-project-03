@@ -3,6 +3,7 @@ import proposal from './proposal';
 import user from './user';
 import userProfile from './userProfile';
 import project from './project';
+import order from './order';
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         user,
         userProfile,
         project,
+        order,
     },
 });
 

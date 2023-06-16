@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { PAuth, PRegister, User, UserState } from './types';
 import { BASE_URL } from '../../utils';
+import { RootState } from '../store';
 
 // Дефолтные значения
 const initialState: UserState = {
@@ -78,3 +79,5 @@ export const userSlice = createSlice({
 export const {} = userSlice.actions;
 
 export default userSlice.reducer;
+
+export const selectCurrentUser = (state: RootState) => state.user.currentUser;

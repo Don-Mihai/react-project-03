@@ -24,6 +24,30 @@
             "id": 3
         },
         {
+            "login": "freelancer",
+            "password": "freelancer",
+            "name": "Vitya",
+            "surname": "Koshkin",
+            "role": "freelancer",
+            "id": 4
+        },
+        {
+            "login": "customer",
+            "password": "customer",
+            "name": "Masha",
+            "surname": "Lapkina",
+            "role": "customer",
+            "id": 5
+        },
+        {
+            "login": "freelancerTWO",
+            "password": "freelancerTWO",
+            "name": "Mitya",
+            "surname": "Rovkin",
+            "role": "freelancer",
+            "id": 6
+        },
+        {
             "login": "ww",
             "password": "ww",
             "name": "ww",
@@ -41,7 +65,22 @@
         }
     ],
     "users-profile": [],
-    "projects": [],
+    "projects": [
+        {
+            "employerId": 5,
+            "title": "Название проекта - 1",
+            "description": "Описание проекта - 1",
+            "status": "active",
+            "id": 1
+        },
+        {
+            "employerId": 5,
+            "title": "Название проекта - 2",
+            "description": "Описание проекта - 2",
+            "status": "active",
+            "id": 2
+        }
+    ],
     "proposals": [
         {
             "userId": "1",
@@ -49,6 +88,7 @@
             "description": "клёвый лендинг",
             "price": 50000,
             "status": "Фронтенд",
+            "category": "testing",
             "id": 1
         },
         {
@@ -68,5 +108,24 @@
             "id": 1001
         }
     ],
-    "orders": []
+    "orders": [
+        {
+            "executorId": 6,
+            "status": "pending",
+            "projectId": 2,
+            "id": 2
+        },
+        {
+            "executorId": 4,
+            "status": "pending",
+            "projectId": 1,
+            "id": 3
+        },
+        {
+            "executorId": 4,
+            "status": "pending",
+            "projectId": 1,
+            "id": 4
+        }
+    ]
 }
