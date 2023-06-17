@@ -1,6 +1,7 @@
 import React from 'react';
 import './FreelanceSection.scss';
 import bemCreator from '../bemCreator';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -24,9 +25,11 @@ const FreelanceSection = ({}: Props) => {
         <section className={cn()}>
             <div className={cn('title-contaner')}>
                 <h2 className={cn('title')}>Раздел фрилансеров</h2>
-                <Button className={cn('title-button')} variant="outlined">
-                    Все фриланс-проекты
-                </Button>
+                <Link to="/all-projects">
+                    <Button className={cn('title-button')} variant="outlined">
+                        Все фриланс-проекты
+                    </Button>
+                </Link>
             </div>
             <div className={cn('order-container')}>
                 {orders.map(order => {

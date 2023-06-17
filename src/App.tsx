@@ -12,11 +12,12 @@ export function App() {
     const navigate = useNavigate();
 
     const toggleUserOpened = () => {
-        if (currentUser?.id) {
-            navigate('/profile');
-        } else {
-            setUserOpened(!userOpened);
-        }
+        //Проверяем функционирование драйвера при авторизованном пользователе
+        // if (currentUser?.id) {
+        //     navigate('/profile');
+        // } else {
+        setUserOpened(!userOpened);
+        // }
     };
 
     return (

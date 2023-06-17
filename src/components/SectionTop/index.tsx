@@ -15,7 +15,7 @@ interface SectionTopProps {
 
 const SectionTop = ({ sectionTitle, buttonLinkTo = '/', ...props }: SectionTopProps) => {
     return (
-        <div className={`${cn()}  ${props.className}`}>
+        <div className={`${cn()} ${props?.className ? props.className : ''}`}>
             <div className={cn('wrap')}>
                 <h2 className={cn('title')}>{sectionTitle}</h2>
                 {props.buttonText && <LinkButton className={cn('link')} linkTo={buttonLinkTo} {...props} />}
