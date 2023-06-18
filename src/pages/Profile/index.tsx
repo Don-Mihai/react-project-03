@@ -19,11 +19,17 @@ const Profile = () => {
 
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        dispatch(fetchUsers());
+    const fetchData = async () => {
+        await dispatch(fetchUsers());
         const user = users.find(user => user.id === Number(localStorage.getItem('userId')));
         user && setFormValues({ login: user?.login, name: user?.name });
-    }, [users]);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [users.length]);
+
+    console.log(formValues);
 
     const handleChange = (event: any) => {
         const key = event.target?.name;

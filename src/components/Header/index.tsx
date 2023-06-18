@@ -32,14 +32,14 @@ const Header = ({ onClickUser }: Props) => {
             </div>
             <div className={cn('menu', { active: isMenuOpen })}>
                 <nav className={cn('links')}>
-                    <Link className={cn('link')} to={''}>
+                    <Link className={cn('link')} to={'find-freelancers'}>
                         Заказчикам
                     </Link>
 
-                    <Link className={cn('link')} to={''}>
+                    <Link className={cn('link')} to={'/all-projects'}>
                         Фрилансерам
                     </Link>
-                    <Link className={cn('link')} to={''}>
+                    <Link className={cn('link')} to={'/'}>
                         Вакансии
                     </Link>
                 </nav>

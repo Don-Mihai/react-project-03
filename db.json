@@ -110,22 +110,41 @@
     ],
     "orders": [
         {
-            "executorId": 6,
             "status": "pending",
             "projectId": 2,
-            "id": 2
+            "id": 5
+        },
+        {
+            "status": "pending",
+            "projectId": 2,
+            "id": 6
+        },
+        {
+            "status": "pending",
+            "projectId": 2,
+            "id": 7
+        },
+        {
+            "status": "pending",
+            "projectId": 2,
+            "id": 8
+        },
+        {
+            "status": "pending",
+            "projectId": 2,
+            "id": 9
+        },
+        {
+            "executorId": 4,
+            "status": "pending",
+            "projectId": 2,
+            "id": 10
         },
         {
             "executorId": 4,
             "status": "pending",
             "projectId": 1,
-            "id": 3
-        },
-        {
-            "executorId": 4,
-            "status": "pending",
-            "projectId": 1,
-            "id": 4
+            "id": 11
         }
     ]
 }

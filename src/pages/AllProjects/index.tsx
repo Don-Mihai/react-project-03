@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import bemCreator from '../../components/bemCreator';
 import SectionTop from '../../components/SectionTop';
 
-import { selectCurrentUser } from '../../redux/user';
+import { fetchUser, selectCurrentUser } from '../../redux/user';
 import { fetch, selectProject } from '../../redux/project';
 import { ORDER_STATUS, Orders, POrder } from '../../redux/order/types';
 import { fetchOrders } from '../../redux/order';
@@ -23,6 +23,20 @@ const AllProjects = () => {
     const dispatch = useAppDispatch();
     const projects = useAppSelector(selectProject);
     const { myOrders, orders } = useAppSelector(selectOrdersState);
+    const [order, setOrder] = React.useState<POrder>({} as POrder);
+    //получаем id и role текущего пользователя
+    const currentUser = useAppSelector(selectCurrentUser);
+    const { id } = currentUser;
+
+    //Присваиваем айди текущего пользователя к айди исполнителя
+
+    React.useEffect(() => {
+        const initialState = {
+            executorId: id,
+            status: ORDER_STATUS.PENDING,
+        };
+        setOrder(initialState as POrder);
+    }, [id]);
 
     const isProjectInMyOrders = React.useCallback(
         (projectId: number) => {
@@ -32,19 +46,8 @@ const AllProjects = () => {
         [myOrders]
     );
 
-    //получаем id и role текущего пользователя
-    const currentUser = useAppSelector(selectCurrentUser);
-    const { id } = currentUser;
     //Проверяем, вошел ли фрилансер, только он может взять заказ
     const isFreelancer: boolean = currentUser?.role === ROLES.FREELANCER;
-
-    //Присваиваем айди текущего пользователя к айди исполнителя
-    const initialState = {
-        executorId: id,
-        status: ORDER_STATUS.PENDING,
-    };
-
-    const [order, setOrder] = React.useState<POrder>(initialState as POrder);
 
     const getAllProjects = async () => {
         await dispatch(fetch());
@@ -55,8 +58,12 @@ const AllProjects = () => {
         await dispatch(fetchMyOrders());
     };
 
+    const fetchCurrentUser = () => {
+        dispatch(fetchUser(Number(localStorage.getItem('userId'))));
+    };
+
     React.useEffect(() => {
-        Promise.all([getAllProjects(), getOrders()]).catch(error => {
+        Promise.all([fetchCurrentUser(), getAllProjects(), getOrders()]).catch(error => {
             console.error('Ошибка при запросе проектов и заказов');
         });
     }, []);
@@ -66,6 +73,7 @@ const AllProjects = () => {
             try {
                 const updatedOrder = { ...order, projectId: id };
                 setOrder(updatedOrder);
+
                 await dispatch(create(updatedOrder));
                 dispatch(addToMyOrders(updatedOrder));
             } catch (error) {

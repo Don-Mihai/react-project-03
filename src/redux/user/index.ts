@@ -15,6 +15,11 @@ export const fetchUsers = createAsyncThunk('user/fetch', async () => {
     return data.data;
 });
 
+export const fetchUser = createAsyncThunk('user/fetchById', async (userId: number) => {
+    const data = await axios.get(BASE_URL + '/users/' + userId);
+    return data.data;
+});
+
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
     const response = await axios.get(BASE_URL + '/users');
 
@@ -72,6 +77,9 @@ export const userSlice = createSlice({
             })
             .addCase(deleteUsers.fulfilled, (state, action) => {
                 state.users = state.users.filter(user => user.id !== action.payload.id);
+            })
+            .addCase(fetchUser.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
             });
     },
 });
