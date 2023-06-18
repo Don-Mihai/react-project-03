@@ -96,7 +96,6 @@ const Auth = () => {
                     />
                 </div>
 
-                {/* todo: сделать стэппер, для добавления личной информации [2] */}
                 <div className={cn('Button')}>
                     <Button onClick={handleSubmit}>Войти</Button>
                     <Button onClick={handleRegister} variant="outlined">

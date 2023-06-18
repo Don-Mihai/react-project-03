@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './Profile.scss';
 import bemCreator from '../../components/bemCreator';
 import Avatar from '@mui/material/Avatar';
@@ -19,12 +19,11 @@ const Profile = () => {
 
     const dispatch = useAppDispatch();
 
-    // todo: сбрасывается опльзователь после перезагрузки
     useEffect(() => {
         dispatch(fetchUsers());
         const user = users.find(user => user.id === Number(localStorage.getItem('userId')));
         user && setFormValues({ login: user?.login, name: user?.name });
-    }, []);
+    }, [users]);
 
     const handleChange = (event: any) => {
         const key = event.target?.name;
@@ -42,13 +41,21 @@ const Profile = () => {
     };
 
     const handleEdit = () => {
-        setEditMode(!editMode);
+        setEditMode(prev => !prev);
     };
+
+    const avatarStyles = useMemo(
+        () => ({
+            width: 100,
+            height: 100,
+        }),
+        []
+    );
 
     return (
         <div className={cn()}>
             <div className={cn('top')}>
-                <Avatar alt="User" sx={{ width: 100, height: 100 }} />
+                <Avatar alt="User" sx={avatarStyles} />
             </div>
 
             <div className={cn('content')}>
