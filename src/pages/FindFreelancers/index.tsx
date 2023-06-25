@@ -4,7 +4,7 @@ import SectionTop from '../../components/SectionTop';
 import { useMemo } from 'react';
 
 import './FindFreelancers.scss';
-import CustumerCard from '../../components/CustomersSection/CustumerCard';
+import CustumerCard from '../../components/ProposalsSection/ProposalCard';
 import freelancersJSON from '../../assets/freelancer.json';
 
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';

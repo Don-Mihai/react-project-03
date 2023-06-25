@@ -62,8 +62,9 @@ const Registration = ({}) => {
             role: formValues[INPUTS_NAME.ROLE],
         } as PRegister;
 
+        // todo: при регистрации пользователя добавлять айди в локалСторадже и обновлять данные в currentUser в redux [2]
         dispatch(registerUser(payload)).then(() => {
-            navigate('/home');
+            navigate('/');
         });
     };
 

@@ -57,6 +57,7 @@ const Auth = () => {
 
         const data = await dispatch(authUsers(payload));
 
+        console.log(data);
         // @ts-ignore
         if (data?.payload?.id) {
             navigate('/profile');

@@ -15,7 +15,7 @@ interface Props {
     showDescription?: boolean;
 }
 
-const FreelancerCard = ({ proposal, className, showDescription }: Props) => {
+const ProposalCard = ({ proposal, className, showDescription }: Props) => {
     const navigate = useNavigate();
     return (
         <Card className={`${cn('card')} ${className}`} onClick={() => navigate(`/cards/${proposal.id}`)}>
@@ -48,4 +48,4 @@ const FreelancerCard = ({ proposal, className, showDescription }: Props) => {
     );
 };
 
-export default FreelancerCard;
+export default ProposalCard;

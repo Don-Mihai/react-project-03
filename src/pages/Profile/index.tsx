@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { User } from '../../redux/user/types';
-import { fetchUsers } from '../../redux/user';
+import { fetchUser } from '../../redux/user';
 
 const cn = bemCreator('page-profile');
 
@@ -15,21 +15,18 @@ const Profile = () => {
     const [formValues, setFormValues] = useState({ login: '', name: '' });
     const [editMode, setEditMode] = useState(false);
 
-    const users: User[] = useAppSelector(state => state.user.users);
-
     const dispatch = useAppDispatch();
 
     const fetchData = async () => {
-        await dispatch(fetchUsers());
-        const user = users.find(user => user.id === Number(localStorage.getItem('userId')));
-        user && setFormValues({ login: user?.login, name: user?.name });
+        dispatch(fetchUser(Number(localStorage.getItem('userId')))).then(data => {
+            const user = data.payload;
+            setFormValues({ login: user?.login, name: user?.name });
+        });
     };
 
     useEffect(() => {
         fetchData();
-    }, [users.length]);
-
-    console.log(formValues);
+    }, []);
 
     const handleChange = (event: any) => {
         const key = event.target?.name;

@@ -16,33 +16,27 @@ export const fetchUsers = createAsyncThunk('user/fetch', async () => {
 });
 
 export const fetchUser = createAsyncThunk('user/fetchById', async (userId: number) => {
-    const data = await axios.get(BASE_URL + '/users/' + userId);
+    const data = await axios.post(BASE_URL + '/user/by-id', { userId });
     return data.data;
 });
 
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
-    const response = await axios.get(BASE_URL + '/users');
+    const response = await axios.post(BASE_URL + '/user/auth', object);
 
-    const user: User = response.data.filter((user: User) => {
-        if (user.login === object.login && user.password === object.password) {
-            return true;
-        } else return false;
-    })[0];
-
-    if (user?.id) {
-        localStorage.setItem('userId', String(user.id));
+    if (response?.data?.id) {
+        localStorage.setItem('userId', String(response?.data?.id));
     }
 
-    return user;
+    return response?.data;
 });
 
 export const registerUser = createAsyncThunk('user/register', async (object: PRegister) => {
-    const data = await axios.post(BASE_URL + '/users', object);
+    const data = await axios.post(BASE_URL + '/user/register', object);
     return data.data;
 });
 
 export const editUsers = createAsyncThunk('user/edit', async (object: User) => {
-    const data = await axios.put(BASE_URL + '/users' + '/' + object.id, object);
+    const data = await axios.put(BASE_URL + '/user/edit', object);
     return data.data;
 });
 
