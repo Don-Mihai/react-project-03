@@ -1,21 +1,21 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 import bemCreator from '../../components/bemCreator';
 import SectionTop from '../../components/SectionTop';
 
 import { fetchUser, selectCurrentUser } from '../../redux/user';
 import { fetch, selectProject } from '../../redux/project';
-import { ORDER_STATUS, Orders, POrder } from '../../redux/order/types';
+import { ORDER_STATUS, POrder } from '../../redux/order/types';
 import { fetchOrders } from '../../redux/order';
 import { addToMyOrders, deleteFromMyOrders, create, fetchMyOrders, remove, selectOrdersState } from '../../redux/order';
 import { ROLES } from '../../redux/user/types';
+import { Project } from '../../redux/project/types';
 
 import './AllProjects.scss';
 import '../../components/LinkButton/LinkButton.scss';
-import Button from '@mui/material/Button';
-import { Project } from '../../redux/project/types';
 
 const cn = bemCreator('all-projects');
 
@@ -24,11 +24,9 @@ const AllProjects = () => {
     const projects = useAppSelector(selectProject);
     const { myOrders, orders } = useAppSelector(selectOrdersState);
     const [order, setOrder] = React.useState<POrder>({} as POrder);
-    //получаем id и role текущего пользователя
+
     const currentUser = useAppSelector(selectCurrentUser);
     const { id } = currentUser;
-
-    //Присваиваем айди текущего пользователя к айди исполнителя
 
     React.useEffect(() => {
         const initialState = {
@@ -58,8 +56,8 @@ const AllProjects = () => {
         await dispatch(fetchMyOrders());
     };
 
-    const fetchCurrentUser = () => {
-        dispatch(fetchUser(Number(localStorage.getItem('userId'))));
+    const fetchCurrentUser = async () => {
+        await dispatch(fetchUser(Number(localStorage.getItem('userId'))));
     };
 
     React.useEffect(() => {
