@@ -1,12 +1,10 @@
 const expressAsyncHandler = require('express-async-handler');
 const User = require('../../model/UserModel');
 
-// @desc    Авторизирует пользователя
-// @route   POST /api/user/by-id
 const fetchUser = expressAsyncHandler(async (req, res) => {
-    const { userId } = req.body;
+    const { id } = req.body;
 
-    const user = await User.findOne({ id: userId });
+    const user = await User.findOne({ id });
 
     res.status(200).send(user);
 });
