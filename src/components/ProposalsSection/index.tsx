@@ -1,6 +1,6 @@
 import bemCreator from '../bemCreator';
 import Grid from '@mui/material/Grid';
-import './CustomersSection.scss';
+import './ProposalsSection.scss';
 
 import CustumerCard from './ProposalCard';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import SectionTop from '../SectionTop';
 import { fetch } from '../../redux/proposal';
 
-const cn = bemCreator('customersSection');
+const cn = bemCreator('proposals-section');
 
 const ProposalsSection = () => {
     const proposals = useAppSelector(state => state.proposal.proposals);
