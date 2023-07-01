@@ -12,7 +12,7 @@ const router = express.Router();
 router.route('/register').post(registerUser);
 router.route('/auth').post(authUser);
 router.route('/by-id').post(fetchUser);
-router.route('/all').post(fetchUsers);
+router.route('/all').get(fetchUsers);
 router.route('/edit').post(editUser);
 router.route('/delete').post(deleteUser);
 

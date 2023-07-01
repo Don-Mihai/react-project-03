@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.route('/create').post(createOrder);
 router.route('/by-id').post(fetchOrder);
-router.route('/all').post(fetchOrders);
+router.route('/all').get(fetchOrders);
 router.route('/edit').post(editOrder);
 router.route('/delete').post(deleteOrder);
 
