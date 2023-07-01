@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../../components/Hero';
-import CustomersSection from '../../components/CustomersSection';
-import FreelanceSection from '../../components/FreelanceSection';
+import CustomersSection from '../../components/ProposalsSection';
+import FreelanceSection from '../../components/ProjectsSection';
 
 const Home = () => {
     return (

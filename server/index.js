@@ -1,13 +1,21 @@
 const express = require('express');
+require('dotenv').config();
+const UserRoutes = require('./routes/UserRoutes');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const conectDb = require('./config/bd');
 
 const app = express();
 
-const PORT = 5000;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-app.get('/users', function (request, response) {
-    // отправляем ответ
-    response.send(['user1', 'user2', 'user3']);
-});
+const PORT = process.env.PORT_SERVER || 5000;
+
+conectDb();
+
+app.use('/user', UserRoutes);
 
 app.listen(PORT, () => {
     console.log(`сервер запущен по порту ${PORT}`);

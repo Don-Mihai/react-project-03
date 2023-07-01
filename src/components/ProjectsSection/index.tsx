@@ -20,11 +20,11 @@ export const orders = [
 
 interface Props {}
 
-const FreelanceSection = ({}: Props) => {
+const ProjectsSection = ({}: Props) => {
     return (
         <section className={cn()}>
             <div className={cn('title-contaner')}>
-                <h2 className={cn('title')}>Раздел фрилансеров</h2>
+                <h2 className={cn('title')}>Раздел проектов</h2>
                 <Link to="/all-projects">
                     <Button className={cn('title-button')} variant="outlined">
                         Все фриланс-проекты
@@ -60,4 +60,4 @@ const FreelanceSection = ({}: Props) => {
     );
 };
 
-export default FreelanceSection;
+export default ProjectsSection;

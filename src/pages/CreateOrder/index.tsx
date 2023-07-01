@@ -7,7 +7,6 @@ import { fetchUser, selectCurrentUser } from '../../redux/user';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { PProject, PROJECT_STATUS } from '../../redux/project/types';
 import { create } from '../../redux/project';
-
 import './CreateOrder.scss';
 
 const cn = bemCreator('page-create-order');
