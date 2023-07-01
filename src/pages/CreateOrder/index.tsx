@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import './CreateOrder.scss';
-import bemCreator from '../../components/bemCreator';
+import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
-import { selectCurrentUser } from '../../redux/user';
+
+import bemCreator from '../../components/bemCreator';
+import { fetchUser, selectCurrentUser } from '../../redux/user';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { PProject, PROJECT_STATUS } from '../../redux/project/types';
 import { create } from '../../redux/project';
+import './CreateOrder.scss';
 
 const cn = bemCreator('page-create-order');
 
@@ -17,43 +19,56 @@ const CreateOrder = () => {
 
     //получим id текущего пользователя
     const { id } = useAppSelector(selectCurrentUser);
-    //присвоем его employerId
-    const initialState = {
+    const [project, setProject] = useState<FormValues>({
         employerId: id,
         title: '',
         description: '',
         status: PROJECT_STATUS.ACTIVE,
-    };
-    const [project, setProject] = useState<FormValues>(initialState as FormValues);
+    });
 
-    const handleChange = (event: any) => {
-        const key = event.target?.name;
+    const fetchCurrentUser = async () => {
+        await dispatch(fetchUser(Number(localStorage.getItem('userId'))));
+    };
+
+    useEffect(() => {
+        fetchCurrentUser();
+        setProject({
+            ...project,
+            employerId: id,
+        });
+    }, []);
+
+    if (!id) {
+        return <Navigate to="/" />;
+    }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
 
         setProject({
             ...project,
-            [key]: event.target.value,
+            [name]: value,
         });
     };
 
     const createProject = () => {
         try {
             dispatch(create(project));
-            setProject(initialState as FormValues);
+            setProject({
+                ...project,
+                title: '',
+                description: '',
+            });
         } catch (error) {
-            console.error('Ошибка при создании проекта');
+            console.error('Ошибка при создании проекта', error);
         }
     };
-
-    //Изменить верстку, когда пользователь не авторизовался
-    if (!id) {
-        return <>Сначала войдите в аккаунт, в качестве заказчика</>;
-    }
 
     return (
         <div className={cn()}>
             <div className={cn('wrap')}>
-                <TextField onChange={handleChange} name="title" value={project.title} label={'Название проекта'} fullWidth></TextField>
-                <TextField onChange={handleChange} name="description" value={project.description} label={'Описание проекта'} fullWidth></TextField>
+                <TextField onChange={handleChange} name="title" value={project.title} label={'Название проекта'} fullWidth />
+                <TextField onChange={handleChange} name="description" value={project.description} label={'Описание проекта'} fullWidth />
                 <Button variant="contained" onClick={createProject}>
                     Опубликовать проект
                 </Button>
