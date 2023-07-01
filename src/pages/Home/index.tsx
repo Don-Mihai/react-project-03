@@ -1,14 +1,17 @@
 import React from 'react';
 import Hero from '../../components/Hero';
-import CustomersSection from '../../components/ProposalsSection';
-import FreelanceSection from '../../components/ProjectsSection';
+import ProposalsSection from '../../components/ProposalsSection';
+import ProjectsSection from '../../components/ProjectsSection';
+
+import TestChat from '../../components/TestChat';
 
 const Home = () => {
     return (
         <>
             <Hero />
-            <CustomersSection />
-            <FreelanceSection />
+            <TestChat />
+            <ProposalsSection />
+            <ProjectsSection />
         </>
     );
 };
