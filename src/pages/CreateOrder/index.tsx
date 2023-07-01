@@ -24,6 +24,7 @@ const CreateOrder = () => {
         title: '',
         description: '',
         status: PROJECT_STATUS.ACTIVE,
+        budget: 0,
     });
 
     const fetchCurrentUser = async () => {
@@ -38,9 +39,9 @@ const CreateOrder = () => {
         });
     }, []);
 
-    if (!id) {
-        return <Navigate to="/" />;
-    }
+    // if (!id) {
+    //     return <Navigate to="/" />;
+    // }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
