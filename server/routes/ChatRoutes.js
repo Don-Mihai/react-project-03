@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.route('/create').post(createChat);
 router.route('/by-id').post(fetchChat);
-router.route('/all').post(fetchChats);
+router.route('/all').get(fetchChats);
 router.route('/edit').post(editChat);
 router.route('/delete').post(deleteChat);
 
