@@ -11,9 +11,9 @@ const initialState: ProposalState = {
 };
 
 export const fetch = createAsyncThunk('proposal/fetch', async () => {
-    const data: ProposalDto[] = (await axios.get(BASE_URL + '/proposals')).data;
-    const users: UserDto[] = (await axios.get(BASE_URL + '/users')).data;
-    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/users-profile')).data;
+    const data: ProposalDto[] = (await axios.get(BASE_URL + '/proposal/all')).data;
+    const users: UserDto[] = (await axios.get(BASE_URL + '/user/all')).data;
+    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/user-profile/all')).data;
 
     const procData: Proposal[] = data.map(proposal => {
         const user = users.find(user => user.id === proposal.userId);
@@ -26,11 +26,11 @@ export const fetch = createAsyncThunk('proposal/fetch', async () => {
 });
 
 export const fetchById = createAsyncThunk('proposal/fetchById', async (proposalId: number) => {
-    const proposal = (await axios.get(BASE_URL + '/proposals' + '/' + proposalId)).data;
+    const proposal = (await axios.get(BASE_URL + '/proposal' + '/' + proposalId)).data;
 
-    const user: UserDto = (await axios.get(BASE_URL + '/users' + '/' + proposal.userId)).data;
+    const user: UserDto = (await axios.get(BASE_URL + '/user' + '/' + proposal.userId)).data;
 
-    const userProfile: UserProfileDto[] = (await axios.get(`${BASE_URL}/users-profile?userId=${user.id}`)).data;
+    const userProfile: UserProfileDto[] = (await axios.get(`${BASE_URL}/user-profile?userId=${user.id}`)).data;
 
     const data = { ...user, ...userProfile, ...proposal };
 
@@ -38,17 +38,17 @@ export const fetchById = createAsyncThunk('proposal/fetchById', async (proposalI
 });
 
 export const create = createAsyncThunk('proposal/register', async (object: PProposal) => {
-    const data = await axios.post(BASE_URL + '/proposals', object);
+    const data = await axios.post(BASE_URL + '/proposal', object);
     return data.data;
 });
 
 export const edit = createAsyncThunk('proposal/edit', async (object: Proposal) => {
-    const data = await axios.put(BASE_URL + '/proposals' + '/' + object.id, object);
+    const data = await axios.put(BASE_URL + '/proposal' + '/' + object.id, object);
     return data.data;
 });
 
 export const remove = createAsyncThunk('proposal/delete', async (userId: number) => {
-    const data = await axios.delete(BASE_URL + '/proposals' + '/' + userId);
+    const data = await axios.delete(BASE_URL + '/proposal' + '/' + userId);
     return data.data;
 });
 

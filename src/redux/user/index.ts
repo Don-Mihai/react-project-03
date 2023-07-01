@@ -15,8 +15,8 @@ export const fetchUsers = createAsyncThunk('user/fetch', async () => {
     return data.data;
 });
 
-export const fetchUser = createAsyncThunk('user/fetchById', async (userId: number) => {
-    const data = await axios.post(BASE_URL + '/user/by-id', { userId });
+export const fetchUser = createAsyncThunk('user/fetchById', async (id: number) => {
+    const data = await axios.post(BASE_URL + '/user/by-id', { id });
     return data.data;
 });
 
@@ -40,8 +40,8 @@ export const editUsers = createAsyncThunk('user/edit', async (object: User) => {
     return data.data;
 });
 
-export const deleteUsers = createAsyncThunk('user/delete', async (userId: number) => {
-    const data = await axios.delete(BASE_URL + '/users' + '/' + userId);
+export const deleteUsers = createAsyncThunk('user/delete', async (id: number) => {
+    const data = await axios.delete(BASE_URL + '/users' + '/' + id);
     return data.data;
 });
 
