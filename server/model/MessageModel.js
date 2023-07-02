@@ -5,8 +5,10 @@ const { Schema } = mongoose;
 const messageScheme = new Schema(
     {
         id: Number,
-        chatId: Number,
-        dateTime: Number,
+        senderId: Number,
+        recipientId: Number,
+        // chatId: Number,
+        dateTime: { type: Date, default: Date.now },
         content: String,
     },
     { versionKey: false }
