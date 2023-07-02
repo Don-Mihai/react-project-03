@@ -19,12 +19,12 @@ export const create = createAsyncThunk('message/create', async (object: PMessage
 });
 
 export const edit = createAsyncThunk('message/edit', async (object: Message) => {
-    const data = await axios.put(BASE_URL + '/message/edit', object);
+    const data = await axios.post(BASE_URL + '/message/edit', object);
     return data.data;
 });
 
 export const remove = createAsyncThunk('message/delete', async (id: number) => {
-    const data = await axios.delete(`${BASE_URL}/message/delete`, { data: { id } });
+    const data = await axios.post(`${BASE_URL}/message/delete`, { data: { id } });
     return data.data;
 });
 

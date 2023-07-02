@@ -22,6 +22,10 @@ import { fetchUsers } from '../../redux/user';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
 import bemCreator from '../bemCreator';
+import io from 'socket.io-client';
+import { Message } from '../../redux/message/types';
+
+const socket = io(BASE_URL);
 
 const cn = bemCreator('component-chat-modal');
 
@@ -43,8 +47,8 @@ interface Props {}
 
 const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
     const [formValues, setFormValues] = React.useState<any>({ content: '' });
-    const [open, setOpen] = React.useState(false);
-    const [messages, setMessages] = React.useState([]);
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [messages, setMessages] = React.useState<Message[]>([]);
     const [recipient, setRecipient] = React.useState<User>({} as User);
 
     const users = useAppSelector((state: RootState) => state.user.users);
@@ -54,24 +58,15 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
 
     React.useEffect(() => {
         dispatch(fetchUsers());
+        // Обработчик получения нового сообщения
+        socket.on('chat message', message => {
+            setMessages(prevMessages => [...prevMessages, message]);
+        });
 
-        const subcribe = async () => {
-            const payload = {
-                recipientId: recipient.id,
-                senderId: currentUser.id,
-            };
-
-            axios.post(BASE_URL + '/message/by-id', payload).then(data => {
-                setMessages(data.data);
-            });
+        return () => {
+            socket.off('chat message');
         };
-
-        const interval = setInterval(() => {
-            subcribe();
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, [dispatch, open, recipient.id]);
+    }, [recipient.id]);
 
     const handleChange = (event: any) => {
         const { name, value } = event?.target;
@@ -110,7 +105,7 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
             content: formValues?.content,
         };
 
-        await axios.post(BASE_URL + '/message/create', payload);
+        socket.emit('chat message', payload);
 
         clearMessage();
     };
