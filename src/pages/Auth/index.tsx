@@ -67,7 +67,7 @@ const Auth = () => {
     };
 
     const handleRegister = () => {
-        navigate('/register');
+        navigate('/registration');
     };
 
     return (
