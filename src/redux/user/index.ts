@@ -11,7 +11,7 @@ const initialState: UserState = {
 };
 
 export const fetchUsers = createAsyncThunk('user/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/users');
+    const data = await axios.get(BASE_URL + '/user/all');
     return data.data;
 });
 
@@ -22,6 +22,8 @@ export const fetchUser = createAsyncThunk('user/fetchById', async (id: number) =
 
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
     const response = await axios.post(BASE_URL + '/user/auth', object);
+
+    console.log(response.data, 'data');
 
     if (response?.data?.id) {
         localStorage.setItem('userId', String(response?.data?.id));
