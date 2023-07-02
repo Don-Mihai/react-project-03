@@ -42,8 +42,8 @@ export const editUsers = createAsyncThunk('user/edit', async (object: User) => {
     return data.data;
 });
 
-export const deleteUsers = createAsyncThunk('user/delete', async (userId: number) => {
-    const data = await axios.delete(BASE_URL + '/users' + '/' + userId);
+export const deleteUsers = createAsyncThunk('user/delete', async (id: number) => {
+    const data = await axios.delete(BASE_URL + '/users' + '/' + id);
     return data.data;
 });
 

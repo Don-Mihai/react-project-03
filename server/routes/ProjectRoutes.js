@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.route('/create').post(createProject);
 router.route('/by-id').post(fetchProject);
-router.route('/all').post(fetchProjects);
+router.route('/all').get(fetchProjects);
 router.route('/edit').post(editProject);
 router.route('/delete').post(deleteProject);
 

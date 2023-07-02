@@ -65,8 +65,8 @@ const Auth = () => {
         }
     };
 
-    const handleRegister = () => {
-        navigate('/register');
+    const handleRegistration = () => {
+        navigate('/registration');
     };
 
     return (
@@ -98,7 +98,7 @@ const Auth = () => {
 
                 <div className={cn('Button')}>
                     <Button onClick={handleSubmit}>Войти</Button>
-                    <Button onClick={handleRegister} variant="outlined">
+                    <Button onClick={handleRegistration} variant="outlined">
                         Нет аккаунта? Зарегистрируйся
                     </Button>
                 </div>
