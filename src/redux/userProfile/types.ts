@@ -21,6 +21,7 @@ export enum CATEGORY_TYPE {
 export interface UserProfile extends UserProfileDto {}
 
 export interface PUserProfile extends Omit<UserProfileDto, 'id'> {}
+export interface PUserGoogleProfile extends Pick<UserProfileDto, 'userId' | 'imageUrl'> {}
 
 export interface UserProfileState {
     userProfiles: UserProfile[];

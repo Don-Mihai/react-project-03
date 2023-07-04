@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { registerUser } from '../../redux/user';
 import { PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
+import { GoogleButton } from '../../features/AuthByGoogle';
 
 export interface FormValues extends Partial<PRegister> {
     [INPUTS_NAME.PASSWORD_REPEAT]: string;
@@ -96,6 +97,7 @@ const Registration = ({}) => {
 
                     <LinkButton buttonText="У меня уже есть аккаунт" linkTo="/auth" />
                 </div>
+                <GoogleButton />
             </div>
         </div>
     );

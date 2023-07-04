@@ -13,6 +13,7 @@ import CreateOrder from './pages/CreateOrder';
 import CardIdPage from './pages/CardIdPage';
 import FindFreelancers from './pages/FindFreelancers';
 import AllProjects from './pages/AllProjects';
+import { GoogleAuthProvider } from './features/AuthByGoogle';
 
 const router = createBrowserRouter([
     {
@@ -68,7 +69,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-    <Provider store={store}>
-        <RouterProvider router={router} />
-    </Provider>
+    <GoogleAuthProvider>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    </GoogleAuthProvider>
 );
