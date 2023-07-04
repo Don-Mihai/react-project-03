@@ -9,12 +9,12 @@ const initialState: UserProfileState = {
 };
 
 export const fetch = createAsyncThunk('user-profile/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/user-profiles');
+    const data = await axios.get(BASE_URL + '/user-profile/all');
     return data.data;
 });
 
-export const create = createAsyncThunk('user-profile/register', async (object: PUserProfile) => {
-    const data = await axios.post(BASE_URL + '/user-profiles', object);
+export const create = createAsyncThunk('user-profile/create', async (object: PUserProfile) => {
+    const data = await axios.post(BASE_URL + '/user-profile/create', object);
     return data.data;
 });
 

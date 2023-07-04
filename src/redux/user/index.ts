@@ -11,17 +11,19 @@ const initialState: UserState = {
 };
 
 export const fetchUsers = createAsyncThunk('user/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/users');
+    const data = await axios.get(BASE_URL + '/user/all');
     return data.data;
 });
 
-export const fetchUser = createAsyncThunk('user/fetchById', async (userId: number) => {
-    const data = await axios.post(BASE_URL + '/user/by-id', { userId });
+export const fetchUser = createAsyncThunk('user/fetchById', async (id: number) => {
+    const data = await axios.post(BASE_URL + '/user/by-id', { id });
     return data.data;
 });
 
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
     const response = await axios.post(BASE_URL + '/user/auth', object);
+
+    console.log(response.data, 'data');
 
     if (response?.data?.id) {
         localStorage.setItem('userId', String(response?.data?.id));
@@ -32,6 +34,7 @@ export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Pr
 
 export const registerUser = createAsyncThunk('user/register', async (object: PRegister) => {
     const data = await axios.post(BASE_URL + '/user/register', object);
+    // todo: сохранить в локал сторажде токен при регистрации
     return data.data;
 });
 
@@ -40,8 +43,8 @@ export const editUsers = createAsyncThunk('user/edit', async (object: User) => {
     return data.data;
 });
 
-export const deleteUsers = createAsyncThunk('user/delete', async (userId: number) => {
-    const data = await axios.delete(BASE_URL + '/users' + '/' + userId);
+export const deleteUsers = createAsyncThunk('user/delete', async (id: number) => {
+    const data = await axios.delete(BASE_URL + '/users' + '/' + id);
     return data.data;
 });
 

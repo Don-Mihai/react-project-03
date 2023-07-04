@@ -8,6 +8,8 @@ const authUser = expressAsyncHandler(async (req, res) => {
 
     const user = await User.findOne({ login: data.login, password: data.password });
 
+    console.log(user);
+
     res.status(200).send(user);
 });
 

@@ -58,7 +58,6 @@ const Auth = () => {
 
         const data = await dispatch(authUsers(payload));
 
-        console.log(data);
         // @ts-ignore
         if (data?.payload?.id) {
             navigate('/profile');
@@ -67,7 +66,7 @@ const Auth = () => {
         }
     };
 
-    const handleRegister = () => {
+    const handleRegistration = () => {
         navigate('/registration');
     };
 
@@ -100,7 +99,7 @@ const Auth = () => {
 
                 <div className={cn('Button')}>
                     <Button onClick={handleSubmit}>Войти</Button>
-                    <Button onClick={handleRegister} variant="outlined">
+                    <Button onClick={handleRegistration} variant="outlined">
                         Нет аккаунта? Зарегистрируйся
                     </Button>
                 </div>

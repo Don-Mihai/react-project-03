@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.route('/create').post(createUserProfile);
 router.route('/by-id').post(fetchUserProfile);
-router.route('/all').post(fetchUserProfiles);
+router.route('/all').get(fetchUserProfiles);
 router.route('/edit').post(editUserProfile);
 router.route('/delete').post(deleteUserProfile);
 router.route('/oauth').post(authByGoogle);

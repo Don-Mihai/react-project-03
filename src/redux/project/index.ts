@@ -12,9 +12,9 @@ const initialState: ProjectState = {
 };
 
 export const fetch = createAsyncThunk('project/fetch', async () => {
-    const data: ProjectDto[] = (await axios.get(BASE_URL + '/projects')).data;
-    const users: UserDto[] = (await axios.get(BASE_URL + '/users')).data;
-    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/users-profile')).data;
+    const data: ProjectDto[] = (await axios.get(BASE_URL + '/project/all')).data;
+    const users: UserDto[] = (await axios.get(BASE_URL + '/user/all')).data;
+    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/user-profile/all')).data;
 
     const projectData: Project[] = data.map(project => {
         const user = users.find(user => user.id === project.employerId);
@@ -32,7 +32,7 @@ export const fetch = createAsyncThunk('project/fetch', async () => {
 });
 
 export const create = createAsyncThunk('project/create', async (object: PProject) => {
-    const data = await axios.post(BASE_URL + '/projects', object);
+    const data = await axios.post(BASE_URL + '/project/create', object);
     return data.data;
 });
 
