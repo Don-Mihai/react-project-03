@@ -64,6 +64,10 @@ const Profile = () => {
             <div className={cn('content')}>
                 {/* todo: добавить остальные данные пользователя для отображения в личном кабинете [Оксана] */}
                 <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="name" label="Имя" fullWidth />
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="surname" label="surname" fullWidth />
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="email" label="email" fullWidth />
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="ratePerHour" label="Оплата" fullWidth />
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.name} name="rating" label="Рейтинг" fullWidth />
             </div>
             <Button onClick={handleEdit}>Редактировать</Button>
         </div>
