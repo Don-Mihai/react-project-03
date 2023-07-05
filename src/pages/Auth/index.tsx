@@ -10,6 +10,7 @@ import { INITIAL_STATE } from './utils';
 import { useAppDispatch } from '../../redux/hooks';
 import { authUsers } from '../../redux/user';
 import { PAuth } from '../../redux/user/types';
+import { GoogleButton } from '../../features/AuthByGoogle';
 
 const cn = bemCreator('page-auth');
 
@@ -102,6 +103,7 @@ const Auth = () => {
                         Нет аккаунта? Зарегистрируйся
                     </Button>
                 </div>
+                <GoogleButton />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { PAuth, PRegister, User, UserState } from './types';
+import { PAuth, PRegister, PUserGoogle, User, UserState } from './types';
 import { BASE_URL } from '../../utils';
 import { RootState } from '../store';
 
@@ -48,6 +48,16 @@ export const deleteUsers = createAsyncThunk('user/delete', async (id: number) =>
     return data.data;
 });
 
+export const authByGoogle = createAsyncThunk('user/oauth', async (userData: PUserGoogle) => {
+    const response = await axios.post(BASE_URL + '/user/oauth', userData);
+
+    if (response?.data?.id) {
+        localStorage.setItem('userId', String(response?.data?.id));
+    }
+
+    return response.data;
+});
+
 // todo: при регистрации выбрать роль
 export const userSlice = createSlice({
     name: 'user',
@@ -76,6 +86,9 @@ export const userSlice = createSlice({
                 state.users = state.users.filter(user => user.id !== action.payload.id);
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(authByGoogle.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
             });
     },
