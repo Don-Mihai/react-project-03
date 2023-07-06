@@ -13,6 +13,8 @@ import { useAppDispatch } from '../../redux/hooks';
 import { registerUser } from '../../redux/user';
 import { PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
+import { authUsers } from '../../redux/user';
+import { PAuth } from '../../redux/user/types';
 
 export interface FormValues extends Partial<PRegister> {
     [INPUTS_NAME.PASSWORD_REPEAT]: string;
@@ -53,7 +55,7 @@ const Registration = ({}) => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const payload: PRegister = {
             login: formValues[INPUTS_NAME.LOGIN],
             password: formValues[INPUTS_NAME.PASSWORD],
@@ -62,10 +64,15 @@ const Registration = ({}) => {
             role: formValues[INPUTS_NAME.ROLE],
         } as PRegister;
 
+        const authPayload: PAuth = {
+            login: formValues[INPUTS_NAME.LOGIN],
+            password: formValues[INPUTS_NAME.PASSWORD],
+        } as PAuth;
+
         // todo: при регистрации пользователя добавлять айди в локалСторадже и обновлять данные в currentUser в redux [2]
-        dispatch(registerUser(payload)).then(() => {
-            navigate('/');
-        });
+        dispatch(registerUser(payload));
+        dispatch(authUsers(authPayload));
+        await navigate('/');
     };
 
     const handleNextStep = () => {
