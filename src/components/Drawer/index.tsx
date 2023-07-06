@@ -21,9 +21,10 @@ const Drawer = ({ onClose, setUserOpened }: DrawerProps) => {
     const drawerRef = React.useRef<HTMLDivElement>(null);
 
     // Получаем текущего пользователя
-    const currentUser = useAppSelector(selectCurrentUser);
+    const currentUser: any = useAppSelector(selectCurrentUser);
     //Проверяем, вошел ли фрилансер
     const isFreelancer: boolean = currentUser?.role === ROLES.FREELANCER;
+    console.log(currentUser);
 
     //Закрыть drawer при клике вне компонента
     React.useEffect(() => {
@@ -45,7 +46,7 @@ const Drawer = ({ onClose, setUserOpened }: DrawerProps) => {
                 <div className={cn('wrap')}>
                     {/* Если аккаунт вошел в систему, то меняем стартовый текст */}
 
-                    {currentUser?.id ? (
+                    {currentUser?.token ? (
                         isFreelancer ? (
                             <>
                                 <ButtonsForFreelancers setUserOpened={setUserOpened} />

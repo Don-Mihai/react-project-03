@@ -60,7 +60,7 @@ const Auth = () => {
 
         // @ts-ignore
         if (data?.payload?.id) {
-            navigate('/profile');
+            navigate('/');
         } else {
             console.log('Неправильный логин или пароль');
         }
