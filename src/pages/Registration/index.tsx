@@ -64,15 +64,10 @@ const Registration = ({}) => {
             role: formValues[INPUTS_NAME.ROLE],
         } as PRegister;
 
-        const authPayload: PAuth = {
-            login: formValues[INPUTS_NAME.LOGIN],
-            password: formValues[INPUTS_NAME.PASSWORD],
-        } as PAuth;
-
         // todo: при регистрации пользователя добавлять айди в локалСторадже и обновлять данные в currentUser в redux [2]
-        dispatch(registerUser(payload));
-        dispatch(authUsers(authPayload));
-        await navigate('/');
+        await dispatch(registerUser(payload));
+
+        navigate('/');
     };
 
     const handleNextStep = () => {

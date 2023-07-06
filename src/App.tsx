@@ -6,7 +6,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useAppSelector } from './redux/hooks';
 
 export function App() {
-    const [userOpened, setUserOpened] = useState(false);
+    const [userOpened, setUserOpened] = useState(true);
     const currentUser = useAppSelector(store => store.user.currentUser);
 
     const navigate = useNavigate();
