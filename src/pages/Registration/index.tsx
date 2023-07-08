@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { INPUTS_NAME } from '../../types';
 import { useAppDispatch } from '../../redux/hooks';
-import { registerUser } from '../../redux/user';
-import { PRegister, ROLES } from '../../redux/user/types';
+import { authUsers, registerUser } from '../../redux/user';
+import { PAuth, PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
 import { authUsers } from '../../redux/user';
 import { PAuth } from '../../redux/user/types';
@@ -64,11 +64,14 @@ const Registration = ({}) => {
             surname: formValues[INPUTS_NAME.SURNAME],
             role: formValues[INPUTS_NAME.ROLE],
         } as PRegister;
+      
+        const data = await dispatch(registerUser(payload));
 
-        // todo: при регистрации пользователя добавлять айди в локалСторадже и обновлять данные в currentUser в redux [2]
-        await dispatch(registerUser(payload));
-
-        navigate('/');
+        if (data?.payload?.token) {
+            navigate('/');
+        } else {
+            console.log('ошибка при авторизации после регистрации');
+        }
     };
 
     const handleNextStep = () => {
