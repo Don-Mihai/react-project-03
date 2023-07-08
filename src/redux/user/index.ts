@@ -34,7 +34,10 @@ export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Pr
 
 export const registerUser = createAsyncThunk('user/register', async (object: PRegister) => {
     const data = await axios.post(BASE_URL + '/user/register', object);
-    // todo: сохранить в локал сторажде токен при регистрации
+
+    if (data?.data?.id) {
+        localStorage.setItem('userId', String(data?.data?.id));
+    }
     return data.data;
 });
 
@@ -71,6 +74,9 @@ export const userSlice = createSlice({
                 state.users = action.payload;
             })
             .addCase(authUsers.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(registerUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
             })
             .addCase(editUsers.fulfilled, (state, action) => {

@@ -13,6 +13,8 @@ import { useAppDispatch } from '../../redux/hooks';
 import { registerUser } from '../../redux/user';
 import { PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
+import { authUsers } from '../../redux/user';
+import { PAuth } from '../../redux/user/types';
 import { GoogleButton } from '../../features/AuthByGoogle';
 
 export interface FormValues extends Partial<PRegister> {
@@ -54,7 +56,7 @@ const Registration = ({}) => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const payload: PRegister = {
             login: formValues[INPUTS_NAME.LOGIN],
             password: formValues[INPUTS_NAME.PASSWORD],
@@ -64,9 +66,9 @@ const Registration = ({}) => {
         } as PRegister;
 
         // todo: при регистрации пользователя добавлять айди в локалСторадже и обновлять данные в currentUser в redux [2]
-        dispatch(registerUser(payload)).then(() => {
-            navigate('/');
-        });
+        await dispatch(registerUser(payload));
+
+        navigate('/');
     };
 
     const handleNextStep = () => {

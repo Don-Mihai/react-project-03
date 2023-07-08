@@ -16,6 +16,13 @@ const Header = ({ onClickUser }: Props) => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const handleClickUser = (event: { stopPropagation: () => void }) => {
+        event.stopPropagation();
+        if (onClickUser) {
+            onClickUser();
+        }
+    };
+
     return (
         <header className={cn()}>
             <Link className={cn('wrap-logo')} to="/">
@@ -44,7 +51,7 @@ const Header = ({ onClickUser }: Props) => {
                     </Link>
                 </nav>
             </div>
-            <div className={cn('user')} onClick={onClickUser}>
+            <div className={cn('user')} onClick={handleClickUser}>
                 <img width={18} height={18} src="/images/user.svg" alt="Пользователь" />
             </div>
         </header>
