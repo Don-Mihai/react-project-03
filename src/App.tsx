@@ -7,18 +7,13 @@ import { useAppSelector } from './redux/hooks';
 import Chat from './components/Chat';
 
 export function App() {
-    const [userOpened, setUserOpened] = useState(false);
     const currentUser = useAppSelector(store => store.user.currentUser);
-
     const navigate = useNavigate();
 
+    const [userOpened, setUserOpened] = useState(false);
+
     const toggleUserOpened = () => {
-        //Проверяем функционирование драйвера при авторизованном пользователе
-        // if (currentUser?.id) {
-        //     navigate('/profile');
-        // } else {
         setUserOpened(!userOpened);
-        // }
     };
 
     return (

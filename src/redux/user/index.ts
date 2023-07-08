@@ -34,12 +34,11 @@ export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Pr
 
 export const registerUser = createAsyncThunk('user/register', async (object: PRegister) => {
     const data = await axios.post(BASE_URL + '/user/register', object);
-    // todo: сохранить в локал сторажде токен при регистрации
 
     if (data?.data?.token) {
         localStorage.setItem('userId', String(data?.data?.token));
     }
-
+  
     return data.data;
 });
 
