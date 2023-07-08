@@ -1,0 +1,47 @@
+.component-chat-modal {
+    &__send-form {
+        padding: 20px;
+    }
+
+    &__wrap {
+        display: flex;
+        height: 78%;
+    }
+
+    &__right {
+        width: 100%;
+    }
+
+    &__left {
+        width: 200px;
+        height: 100%;
+        border-right: 1px solid #333;
+    }
+
+    &__user {
+        padding: 20px 10px;
+
+        &:hover {
+            background-color: #e5e3e3;
+        }
+    }
+
+    &__message {
+        width: fit-content !important;
+        border-radius: 16px;
+        background-color: #3691c9;
+        min-width: 40%;
+
+        &--my {
+            margin-left: auto !important;
+        }
+    }
+}
+
+.component-chat {
+    & &__icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+}

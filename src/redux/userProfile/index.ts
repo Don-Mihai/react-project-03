@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
-import { PUserProfile, UserProfile, UserProfileState } from './types';
+import { PUserGoogleProfile, PUserProfile, UserProfile, UserProfileState } from './types';
 
 // Дефолтные значения
 const initialState: UserProfileState = {
@@ -9,12 +9,12 @@ const initialState: UserProfileState = {
 };
 
 export const fetch = createAsyncThunk('user-profile/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/user-profiles');
+    const data = await axios.get(BASE_URL + '/user-profile/all');
     return data.data;
 });
 
-export const create = createAsyncThunk('user-profile/register', async (object: PUserProfile) => {
-    const data = await axios.post(BASE_URL + '/user-profiles', object);
+export const create = createAsyncThunk('user-profile/create', async (object: PUserProfile) => {
+    const data = await axios.post(BASE_URL + '/user-profile/create', object);
     return data.data;
 });
 
@@ -25,6 +25,11 @@ export const edit = createAsyncThunk('user-profile/edit', async (object: UserPro
 
 export const remove = createAsyncThunk('user-profile/delete', async (userId: number) => {
     const data = await axios.delete(BASE_URL + '/user-profiles' + '/' + userId);
+    return data.data;
+});
+
+export const authProfileByGoogle = createAsyncThunk('user-profile/oauth', async (userProfileData: PUserGoogleProfile) => {
+    const data = await axios.post(BASE_URL + '/user-profile/oauth', userProfileData);
     return data.data;
 });
 

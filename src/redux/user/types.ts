@@ -27,3 +27,5 @@ export interface UserDto {
 }
 
 export interface User extends UserDto {}
+
+export interface PUserGoogle extends Pick<UserDto, 'id' | 'email' | 'name'> {}

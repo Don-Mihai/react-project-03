@@ -7,7 +7,7 @@ import bemCreator from '../bemCreator';
 import { Proposal } from '../../redux/proposal/types';
 import { useNavigate } from 'react-router-dom';
 
-const cn = bemCreator('customersSection');
+const cn = bemCreator('proposals-section');
 
 interface Props {
     proposal: Proposal;

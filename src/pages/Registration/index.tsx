@@ -15,6 +15,7 @@ import { PRegister, ROLES } from '../../redux/user/types';
 import LinkButton from '../../components/LinkButton';
 import { authUsers } from '../../redux/user';
 import { PAuth } from '../../redux/user/types';
+import { GoogleButton } from '../../features/AuthByGoogle';
 
 export interface FormValues extends Partial<PRegister> {
     [INPUTS_NAME.PASSWORD_REPEAT]: string;
@@ -98,6 +99,7 @@ const Registration = ({}) => {
 
                     <LinkButton buttonText="У меня уже есть аккаунт" linkTo="/auth" />
                 </div>
+                <GoogleButton />
             </div>
         </div>
     );

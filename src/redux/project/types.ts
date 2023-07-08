@@ -6,7 +6,7 @@ export interface ProjectDto {
     employerId: User['id'];
     title: string;
     description: string;
-    // budget: number;
+    budget: number;
     status: PROJECT_STATUS;
 }
 

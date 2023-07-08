@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { PAuth, PRegister, User, UserState } from './types';
+import { PAuth, PRegister, PUserGoogle, User, UserState } from './types';
 import { BASE_URL } from '../../utils';
 import { RootState } from '../store';
 
@@ -11,17 +11,19 @@ const initialState: UserState = {
 };
 
 export const fetchUsers = createAsyncThunk('user/fetch', async () => {
-    const data = await axios.get(BASE_URL + '/users');
+    const data = await axios.get(BASE_URL + '/user/all');
     return data.data;
 });
 
-export const fetchUser = createAsyncThunk('user/fetchById', async (userId: number) => {
-    const data = await axios.post(BASE_URL + '/user/by-id', { userId });
+export const fetchUser = createAsyncThunk('user/fetchById', async (id: number) => {
+    const data = await axios.post(BASE_URL + '/user/by-id', { id });
     return data.data;
 });
 
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
     const response = await axios.post(BASE_URL + '/user/auth', object);
+
+    console.log(response.data, 'data');
 
     if (response?.data?.id) {
         localStorage.setItem('userId', String(response?.data?.id));
@@ -44,9 +46,19 @@ export const editUsers = createAsyncThunk('user/edit', async (object: User) => {
     return data.data;
 });
 
-export const deleteUsers = createAsyncThunk('user/delete', async (userId: number) => {
-    const data = await axios.delete(BASE_URL + '/users' + '/' + userId);
+export const deleteUsers = createAsyncThunk('user/delete', async (id: number) => {
+    const data = await axios.delete(BASE_URL + '/users' + '/' + id);
     return data.data;
+});
+
+export const authByGoogle = createAsyncThunk('user/oauth', async (userData: PUserGoogle) => {
+    const response = await axios.post(BASE_URL + '/user/oauth', userData);
+
+    if (response?.data?.id) {
+        localStorage.setItem('userId', String(response?.data?.id));
+    }
+
+    return response.data;
 });
 
 // todo: при регистрации выбрать роль
@@ -80,6 +92,9 @@ export const userSlice = createSlice({
                 state.users = state.users.filter(user => user.id !== action.payload.id);
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(authByGoogle.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
             });
     },
