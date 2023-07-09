@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { User } from '../../redux/user/types';
 import { fetchUser } from '../../redux/user';
+import FileDrop from '../../components/FileDrop';
 
 const cn = bemCreator('page-profile');
 
@@ -58,7 +59,9 @@ const Profile = () => {
     return (
         <div className={cn()}>
             <div className={cn('top')}>
-                <Avatar alt="User" sx={avatarStyles} />
+                <FileDrop>
+                    <Avatar alt="User" sx={avatarStyles} />
+                </FileDrop>
             </div>
 
             <div className={cn('content')}>

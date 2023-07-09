@@ -24,6 +24,7 @@ import { BASE_URL } from '../../utils';
 import bemCreator from '../bemCreator';
 import io from 'socket.io-client';
 import { Message } from '../../redux/message/types';
+import FileDrop from '../FileDrop';
 
 const socket = io(BASE_URL);
 
@@ -145,6 +146,7 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
                             </div>
                         ))}
                     </div>
+
                     <div className="component-chat-modal__right">
                         <h2>{chatId}</h2>
                         <List sx={{ height: '100%', overflowY: 'scroll', display: 'flex', flexDirection: 'column', gap: '10px' }}>

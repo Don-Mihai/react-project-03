@@ -2,6 +2,8 @@ const expressAsyncHandler = require('express-async-handler');
 const User = require('../../model/UserModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const sendEmail = require('../../services/email');
+const getHtmlText = require('../../services/html');
 
 const registerUser = expressAsyncHandler(async (req, res) => {
     const data = req.body;
@@ -25,7 +27,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
 
     const user = await User.create({ ...data, id: numericId, password: hashedPassword });
 
-    // sendEmail(data)
+    await sendEmail(data.email, 'Регистрация', getHtmlText(data.name, 'qqqqq'));
 
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
         expiresIn: '1h',
