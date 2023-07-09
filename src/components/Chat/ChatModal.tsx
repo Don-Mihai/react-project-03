@@ -18,7 +18,7 @@ import TextField from '@mui/material/TextField';
 import { User } from '../../redux/user/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { AppDispatch, RootState } from '../../redux/store';
-import { fetchUsers } from '../../redux/user';
+import { fetchOrders } from '../../redux/order';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
 import bemCreator from '../bemCreator';
@@ -49,24 +49,30 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
     const [formValues, setFormValues] = React.useState<any>({ content: '' });
     const [open, setOpen] = React.useState<boolean>(false);
     const [messages, setMessages] = React.useState<Message[]>([]);
-    const [recipient, setRecipient] = React.useState<User>({} as User);
+    const [chatId, setChatId] = React.useState<number>(0);
 
-    const users = useAppSelector((state: RootState) => state.user.users);
+    const orders = useAppSelector((state: RootState) => state.order.orders);
     const currentUser = useAppSelector((state: RootState) => state.user.currentUser);
 
     const dispatch = useAppDispatch();
 
     React.useEffect(() => {
-        dispatch(fetchUsers());
+        dispatch(fetchOrders());
         // Обработчик получения нового сообщения
-        socket.on('chat message', message => {
-            setMessages(prevMessages => [...prevMessages, message]);
+        socket.on('message', message => {
+            setMessages(prev => [...prev, message]);
+        });
+
+        // Подписка на событие получения истории сообщений для комнаты
+        socket.on('chatHistory', history => {
+            setMessages(history);
         });
 
         return () => {
-            socket.off('chat message');
+            socket.off('message');
+            socket.off('chatHistory');
         };
-    }, [recipient.id]);
+    }, []);
 
     const handleChange = (event: any) => {
         const { name, value } = event?.target;
@@ -77,8 +83,14 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
         });
     };
 
-    const handleClickUser = (user: User) => {
-        setRecipient(user);
+    const handleJoinChat = () => {
+        // Отправка запроса на присоединение к определенному чату
+        socket.emit('joinChat', chatId);
+    };
+
+    const handleClickChat = (id: number) => {
+        setChatId(id);
+        handleJoinChat();
     };
 
     const handleClickOpen = () => {
@@ -101,11 +113,13 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
     const handleSendMessage = async () => {
         const payload = {
             senderId: currentUser?.id || null,
-            recipientId: recipient?.id || null,
+            chatId: chatId || null,
             content: formValues?.content,
         };
 
-        socket.emit('chat message', payload);
+        console.log(payload);
+
+        socket.emit('sendMessage', payload);
 
         clearMessage();
     };
@@ -125,14 +139,14 @@ const ChatModal = forwardRef<IModalRef, Props>(({}, ref) => {
                 </AppBar>
                 <div className="component-chat-modal__wrap">
                     <div className="component-chat-modal__left">
-                        {users.map(user => (
-                            <div className="component-chat-modal__user" key={user.id} onClick={() => handleClickUser(user)}>
-                                {user.name}
+                        {[{ id: 100 }, { id: 200 }].map(order => (
+                            <div className="component-chat-modal__user" key={order.id} onClick={() => handleClickChat(order.id)}>
+                                {order.id}
                             </div>
                         ))}
                     </div>
                     <div className="component-chat-modal__right">
-                        <h2>{recipient?.name}</h2>
+                        <h2>{chatId}</h2>
                         <List sx={{ height: '100%', overflowY: 'scroll', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             {/* @ts-ignore */}
                             {messages.map((message: any) => {

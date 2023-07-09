@@ -14,10 +14,10 @@ const initialState: OrderState = {
 };
 
 export const fetchOrders = createAsyncThunk('order/fetchOrders', async () => {
-    const data: OrdersDto[] = (await axios.get(BASE_URL + '/orders')).data;
-    const users: UserDto[] = (await axios.get(BASE_URL + '/users')).data;
-    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/users-profile')).data;
-    const projects: ProjectDto[] = (await axios.get(BASE_URL + '/projects')).data;
+    const data: OrdersDto[] = (await axios.get(BASE_URL + '/order/all')).data;
+    const users: UserDto[] = (await axios.get(BASE_URL + '/user/all')).data;
+    const userProfiles: UserProfileDto[] = (await axios.get(BASE_URL + '/user-profile/all')).data;
+    const projects: ProjectDto[] = (await axios.get(BASE_URL + '/project/all')).data;
 
     const orders: Orders[] = data.map(order => {
         const user = users.find(user => user?.id === order.executorId);

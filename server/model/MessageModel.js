@@ -6,8 +6,7 @@ const messageScheme = new Schema(
     {
         id: Number,
         senderId: Number,
-        recipientId: Number,
-        // chatId: Number,
+        chatId: Number,
         dateTime: { type: Date, default: Date.now },
         content: String,
     },

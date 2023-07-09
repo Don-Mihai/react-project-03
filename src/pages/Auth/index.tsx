@@ -59,7 +59,7 @@ const Auth = () => {
         const data = await dispatch(authUsers(payload));
 
         // @ts-ignore
-        if (data?.payload?.id) {
+        if (data?.payload?.token) {
             navigate('/');
         } else {
             console.log('Неправильный логин или пароль');

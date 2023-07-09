@@ -18,7 +18,7 @@ const Profile = () => {
     const dispatch = useAppDispatch();
 
     const fetchData = async () => {
-        dispatch(fetchUser(Number(localStorage.getItem('userId')))).then(data => {
+        dispatch(fetchUser()).then(data => {
             const user = data.payload;
             setFormValues({ login: user?.login, name: user?.name });
         });

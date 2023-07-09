@@ -41,47 +41,47 @@ const io = socket(server, {
     },
 });
 
-// todo: создание комнат(чатов для разных пользователей)
-// Хранение информации о пользователях и комнатах
-const users = [];
-
 // Обработчик подключения нового клиента
 io.on('connection', socket => {
-    console.log(`Клиент подключен: ${socket.id}`);
+    // Событие подключения клиента к определенному чату
+    socket.on('joinChat', async chatId => {
+        console.log(`Client joined chat: ${chatId}`);
 
-    // Обработчик для идентификации пользователя
-    socket.on('login', userId => {
-        // Сохранение информации о пользователе
-        users.push({ socketId: socket.id, userId });
+        // Присоединение клиента к комнате
+        socket.join(chatId);
 
-        // Присоединение пользователя к комнате с его ID
-        socket.join(userId);
+        // Загрузка и отправка истории сообщений только для этой комнаты
+        try {
+            const messages = await Message.find({ chatId });
+            socket.emit('chatHistory', messages);
+        } catch (error) {
+            console.error(`Failed to fetch chat history for chat ${chatId}:`, error);
+        }
     });
 
-    // Обработчик для отправки и сохранения сообщений
-    socket.on('chat message', async data => {
-        const { senderId, recipientId, content } = data;
+    // Событие отправки сообщения
+    socket.on('sendMessage', async data => {
+        const { senderId, chatId, content } = data;
 
         try {
             // Сохранение сообщения в базе данных
             const message = await Message.create({
                 senderId,
-                recipientId,
+                chatId,
                 content,
             });
 
+            console.log(`New message in chat ${chatId}:`, message);
+
             // Отправка нового сообщения в комнату получателя
-            io.to(recipientId).emit('chat message', message);
+            io.to(chatId).emit('message', message);
         } catch (error) {
-            console.error('Ошибка сохранения сообщения:', error);
+            console.error('Failed to save message:', error);
         }
     });
 
     // Обработчик отключения клиента
     socket.on('disconnect', () => {
-        console.log(`Клиент отключен: ${socket.id}`);
-
-        // Удаление информации о пользователе
-        // users.(socket.id);
+        console.log('Client disconnected');
     });
 });

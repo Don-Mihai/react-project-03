@@ -1,6 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const User = require('../../model/UserModel');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const registerUser = expressAsyncHandler(async (req, res) => {
     const data = req.body;
@@ -20,7 +21,11 @@ const registerUser = expressAsyncHandler(async (req, res) => {
         res.status(400).send({ message: 'Пользователь с таким логином уже существует' });
     }
 
-    const user = await User.create({ ...data, id: numericId });
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+
+    const user = await User.create({ ...data, id: numericId, password: hashedPassword });
+
+    // sendEmail(data)
 
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
         expiresIn: '1h',

@@ -15,18 +15,26 @@ export const fetchUsers = createAsyncThunk('user/fetch', async () => {
     return data.data;
 });
 
-export const fetchUser = createAsyncThunk('user/fetchById', async (id: number) => {
-    const data = await axios.post(BASE_URL + '/user/by-id', { id });
+export const fetchUser = createAsyncThunk('user/fetchById', async (id?: number) => {
+    const token = localStorage.getItem('userId');
+
+    const data = await axios.post(
+        BASE_URL + '/user/by-id',
+        { id },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
     return data.data;
 });
 
 export const authUsers = createAsyncThunk('user/auth', async (object: PAuth): Promise<User> => {
     const response = await axios.post(BASE_URL + '/user/auth', object);
 
-    console.log(response.data, 'data');
-
-    if (response?.data?.id) {
-        localStorage.setItem('userId', String(response?.data?.id));
+    if (response?.data?.token) {
+        localStorage.setItem('userId', String(response?.data?.token));
     }
 
     return response?.data;
@@ -38,7 +46,7 @@ export const registerUser = createAsyncThunk('user/register', async (object: PRe
     if (data?.data?.token) {
         localStorage.setItem('userId', String(data?.data?.token));
     }
-  
+
     return data.data;
 });
 
