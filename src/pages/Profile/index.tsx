@@ -27,7 +27,15 @@ interface FormValues {
 }
 
 const Profile = () => {
-    const [formValues, setFormValues] = useState<>({ login: '', name: '', surname: '', password: '', role: '', emaile: '', skills: [] });
+    const [formValues, setFormValues] = useState<>({
+        login: 'string',
+        name: 'string',
+        surname: 'string',
+        password: 'string',
+        role: 'string',
+        email: 'string',
+        skills: ['string'],
+    });
     const [editMode, setEditMode] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -100,7 +108,8 @@ const Profile = () => {
                     label="Пароль"
                     fullWidth
                 />
-                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.emaile} name="email" label="Имейл" fullWidth />
+
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.email} name="email" label="Имейл" fullWidth />
                 <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.role} name="role" label="Роль" fullWidth />
                 <div>
                     <FormControl required sx={{ m: 1, minWidth: 120 }}>
@@ -108,7 +117,7 @@ const Profile = () => {
                         <Select
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
-                            value={Skills}
+                            value={'Skills'}
                             label="Skills *"
                             onChange={handleChange}
                         >
