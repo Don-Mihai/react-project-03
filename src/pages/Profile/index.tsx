@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { User } from '../../redux/user/types';
 import { fetchUser } from '../../redux/user';
 import FileDrop from '../../components/FileDrop';
+import { BASE_URL } from '../../utils';
 
 const cn = bemCreator('page-profile');
 interface FormValues {
@@ -24,11 +25,14 @@ interface FormValues {
     login: string;
     role: string;
     email: string;
+    imageUrl?: string;
 }
 
 const Profile = () => {
-    const [formValues, setFormValues] = useState<>({ login: '', name: '', surname: '', password: '', role: '', emaile: '', skills: [] });
+    const [formValues, setFormValues] = useState<FormValues>({ login: '', name: '', surname: '', password: '', role: '', email: '', skills: [], imageUrl: '' });
     const [editMode, setEditMode] = useState(false);
+
+    const currentUser = useAppSelector(store => store.user.currentUser);
 
     const dispatch = useAppDispatch();
 
@@ -43,6 +47,7 @@ const Profile = () => {
                 password: user?.password,
                 role: user?.role,
                 skills: user?.skills,
+                imageUrl: user?.imageUrl,
             });
         });
     };
@@ -78,12 +83,21 @@ const Profile = () => {
         []
     );
 
+    const handleSendFiles = (files: Blob) => {
+        const formData = new FormData();
+        formData.append('filedata', files as Blob);
+
+        axios.post(BASE_URL + `/uploads?userId=${currentUser.id}`, formData).then(fetchData);
+    };
+
     return (
         <div className={cn()}>
             <div className={cn('top')}>
-                <FileDrop>
-                    <Avatar alt="User" sx={avatarStyles} />
+                <FileDrop onSendFiles={handleSendFiles}>
+                    <Avatar alt="User" sx={avatarStyles} src={BASE_URL + '/' + formValues?.imageUrl} />
                 </FileDrop>
+
+                <input type="file" />
             </div>
 
             <div className={cn('content')}>
@@ -100,7 +114,7 @@ const Profile = () => {
                     label="Пароль"
                     fullWidth
                 />
-                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.emaile} name="email" label="Имейл" fullWidth />
+                <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.email} name="email" label="Имейл" fullWidth />
                 <TextField disabled={!editMode} onChange={handleChange} onKeyUp={onEnter} value={formValues.role} name="role" label="Роль" fullWidth />
                 <div>
                     <FormControl required sx={{ m: 1, minWidth: 120 }}>
@@ -108,7 +122,7 @@ const Profile = () => {
                         <Select
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
-                            value={Skills}
+                            value={''}
                             label="Skills *"
                             onChange={handleChange}
                         >

@@ -1,6 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const User = require('../../model/UserModel');
 const jwt = require('jsonwebtoken');
+const UserProfile = require('../../model/UserProfileModel');
 
 const fetchUser = expressAsyncHandler(async (req, res) => {
     const { id } = req.body;

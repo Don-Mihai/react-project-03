@@ -10,8 +10,11 @@ const UserProfileRoutes = require('./routes/UserProfileRoutes');
 const bodyParser = require('body-parser');
 const socket = require('socket.io');
 const Message = require('./model/MessageModel');
+const Profile = require('./model/UserProfileModel');
 const cors = require('cors');
 const conectDb = require('./config/bd');
+const multer = require('multer');
+const User = require('./model/UserModel');
 
 const app = express();
 
@@ -84,4 +87,25 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
+});
+
+app.use(express.static('./uploads'));
+
+const storageConfig = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+
+app.post('/uploads', multer({ storage: storageConfig }).single('filedata'), async function (req, res) {
+    let filedata = req.file;
+    let userId = req.query?.userId;
+
+    const user = await User.findOneAndUpdate({ id: userId }, { $set: { imageUrl: filedata.filename } }, { returnDocument: 'after' });
+
+    if (!filedata) res.send('Ошибка при загрузке файла');
+    else res.send(user);
 });

@@ -12,6 +12,11 @@ const userScheme = new Schema(
         password: String,
         email: String,
         role: String,
+        imageUrl: String,
+        skills: [String],
+        ratePerHour: Number,
+        rating: Number,
+        ratingCount: Number,
     },
     { versionKey: false }
 );
