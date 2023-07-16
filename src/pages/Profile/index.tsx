@@ -122,7 +122,7 @@ const Profile = () => {
                         <Select
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
-                            value={''}
+                            value={'Skills'}
                             label="Skills *"
                             onChange={handleChange}
                         >
